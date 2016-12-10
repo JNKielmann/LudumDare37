@@ -10,7 +10,7 @@ namespace LD_37
     {
         public string Process(string intent, State currentState)
         {
-            string answer;
+            string answer = "";
             bool hadAnswer = false;
             switch (currentState.Location)
             {
