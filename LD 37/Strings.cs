@@ -11,7 +11,16 @@ namespace LD_37
         public enum Keys
         {
             Tutorial_Introduction
-
+                , Tutorial_LookAtRom
+                , Tutorial_Goto_Light_NextTo
+                , Tutorial_Goto_Light_IsFree
+                , Tutorial_Goto_Light_IsEnchained
+                , Tutorial_Take_Key
+                , Tutorial_Use_Key_IsFree
+                , Tutorial_Use_Key_IsEnchained_HasKey
+                , Tutorial_Use_Key_IsEnchained_HasNoKey
+                , Tutorial_Use_LightSwitch_LightOn
+                , Tutorial_Use_LightSwitch_LightOff
                 , UnknownIntent
         }
 
@@ -32,6 +41,46 @@ namespace LD_37
 @"Hello fellow stranger!
 I have bad news for you.
 You are in a dark room. Maybe you could try to [look around]?"
+                );
+            _strings.Add(
+                    Keys.Tutorial_LookAtRom,
+                    "You see a small light in the distance. Maybe you should [go to] that light."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Goto_Light_NextTo,
+                    "You are already here. The small amout of light seems to be coming from a light switch. Maby you should [use] it."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Goto_Light_IsFree,
+                    "As you slowly make your way through the darkness you realiste that the small light is a lightswitch."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Goto_Light_IsEnchained,
+                    "You notice that you can not move because you are enchained. But you feel a key next to you. Maybe you should [take] it."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Take_Key,
+                    "You took the key. Maybe you can [use] it to free yourself."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Use_Key_IsFree,
+                    "You are already free. What are you waiting for? Go to that small light."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Use_Key_IsEnchained_HasKey,
+                   "You freed yourself and can move around freely. It's still dark though and you only see a small ligth"
+                );
+            _strings.Add(
+                    Keys.Tutorial_Use_Key_IsEnchained_HasNoKey,
+                   "You don't have the key to free yourself."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Use_LightSwitch_LightOn,
+                   "It's not a good idea to turn the light back off again."
+                );
+            _strings.Add(
+                    Keys.Tutorial_Use_LightSwitch_LightOff,
+                   "The room is filled with light. The first thing you notice is the big wardrobe infront of you. Next to that you see a bed with a little nightstand. On the ground you see a picture, but you can not see whats on it from the distance. There is also a radio, maybe it still works? As you look behind you, you see a big steel door. What do you want to check out first?"
                 );
 
 
