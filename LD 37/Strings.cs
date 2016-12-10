@@ -16,12 +16,17 @@ namespace LD_37
                 , Tutorial_Goto_Light_IsFree
                 , Tutorial_Goto_Light_IsEnchained
                 , Tutorial_Take_Key
+                , Tutorial_Take_Key_AlreadyInInventory
                 , Tutorial_Use_Key_IsFree
                 , Tutorial_Use_Key_IsEnchained_HasKey
                 , Tutorial_Use_Key_IsEnchained_HasNoKey
                 , Tutorial_Use_LightSwitch_LightOn
                 , Tutorial_Use_LightSwitch_LightOff
-                , UnknownIntent
+
+                , DoorIntent_LookAt_Door
+                , DoorIntent_LookAt_DoorKeyPad
+
+                , Unknown_Intent
         }
 
         private static Dictionary<Keys, string> _strings;
@@ -63,6 +68,10 @@ You are in a dark room. Maybe you could try to [look around]?"
                     "You took the key. Maybe you can [use] it to free yourself."
                 );
             _strings.Add(
+                    Keys.Tutorial_Take_Key_AlreadyInInventory,
+                    "Take the key..what? Ohhh you mean the key that is already in your inventory...silly!"
+                );
+            _strings.Add(
                     Keys.Tutorial_Use_Key_IsFree,
                     "You are already free. What are you waiting for? Go to that small light."
                 );
@@ -85,7 +94,19 @@ You are in a dark room. Maybe you could try to [look around]?"
 
 
             _strings.Add(
-                    Keys.UnknownIntent,
+                    Keys.DoorIntent_LookAt_Door,
+                    @"You are standing in front of a massive steel door and ask yourself ""Why the hell are you here?"".
+You can see that you need to enter a four digit password into a keypad to open the door.
+Maybe you can find some hints in this room?"
+                );
+            _strings.Add(
+                    Keys.DoorIntent_LookAt_DoorKeyPad,
+                    @"You look at a keypad that accepts four digits. Quite interesting isn't it?"
+                );
+
+
+            _strings.Add(
+                    Keys.Unknown_Intent,
 @"I have no idea what you mean by that..."
                 );
         }

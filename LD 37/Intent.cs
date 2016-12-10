@@ -27,6 +27,7 @@ namespace LD_37
         public const string ThingRadio = "Radio";
         public const string ThingPicture = "Picture";
         public const string ThingDoor = "Door";
+        public const string ThingDoorKeyPad = "KeyPad";
 
         public const string ThingFloor = "Floor";
         public const string ThingCrackInFloor = "CrackInFloor";
@@ -38,12 +39,14 @@ namespace LD_37
         public string Merged { get { return Action + Thing; } }
 
         public bool IsInvalidThing { get; private set; }
+        public string Parameter { get; private set; }
 
-        public Intent(string action, string thing = "", bool isInvalidThing = false)
+        public Intent(string action, string thing = "", bool isInvalidThing = false, string parameter = "")
         {
             Action = action;
             Thing = thing;
             IsInvalidThing = isInvalidThing;
+            Parameter = parameter;
         }
     }
 }
