@@ -67,6 +67,7 @@ namespace LD_37
         {
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
+                    , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -78,7 +79,7 @@ namespace LD_37
 
             _verbs.Add(new Verb(Intent.ActionTake
                     , new string[] { "take", "pick up" }
-                    , Intent.ThingKey
+                    , Intent.ThingKey, Intent.ThingPicture, Intent.ThingPaper
                 ));
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
@@ -93,6 +94,10 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
             _nouns.Add(new Noun(Intent.ThingDoor, "door"));
             _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
+            _nouns.Add(new Noun(Intent.ThingFloor, "floor"));
+            _nouns.Add(new Noun(Intent.ThingCrackInFloor, "crack in floor", "crack"));
+            _nouns.Add(new Noun(Intent.ThingPaper, "paper"));
+
         }
 
 

@@ -8,60 +8,62 @@ namespace LD_37
 {
     class PictureIntentProcessor
     {
-        static public bool Process(string intent, State currentState, out string result)
+        static public string Process(Intent intent, State currentState)
         {
-            result = string.Empty;
-
-            switch (intent)
+            switch (intent.Action)
             {
-                case "LookAtPicture":
-                    result = "The picture shows ....";
-                    return true;
-                case "TakePicture":
-                    if (currentState.Inventory.Contains("Picture"))
+                case Intent.ActionLookAt:
+                    switch (intent.Thing)
                     {
-                        result = "You already picked up the Picture";
+                        case Intent.ThingPicture:
+                            return "The picture shows ....";
+                        case Intent.ThingFloor:
+                            if (!currentState.Inventory.Contains("Picture"))
+                            {
+                                return null;
+                            }
+                            else
+                            {
+                                return "You see a small crack in the floor.";
+                            }
+                        case Intent.ThingCrackInFloor:
+                            if (!currentState.Inventory.Contains("Picture"))
+                            {
+                                return null;
+                            }
+                            else
+                            {
+                                return "You see a small piece of paper";
+                            }
                     }
-                    else
+                    break;
+                case Intent.ActionTake:
+                    switch (intent.Thing)
                     {
-                        result = "As you pick up the picture you notice something on the floor.";
-                    }
-                    currentState.Inventory.Add("Picture");
-                    return true;
-                case "LookAtFloor":
-                    if (!currentState.Inventory.Contains("Picture"))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        result = "You see a small crack in the floor.";
-                    }
-                    return true;
-                case "LookAtCrackInFloor":
-                    if (!currentState.Inventory.Contains("Picture"))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        result = "You see a small piece of paper";
-                    }
-                    return true;
-                case "TakePaper":
-                    if (!currentState.Inventory.Contains("Picture"))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        result = "You picked up the small piec of paper. There is a 4 written on it with blue ink.";
-                        currentState.Inventory.Add("Piece of paper with a 4 in blue ink.");
-                    }
-                    return true;
+                        case Intent.ThingPicture:
+                            if (currentState.Inventory.Contains("Picture"))
+                            {
+                                return "You already moved the Picture. You dont need to pick it up again.";
+                            }
+                            else
+                            {
 
+                                return "As you pick up the picture you notice something on the floor. You put the picture aside.";
+                            }
+                        case Intent.ThingPaper:
+                            if (!currentState.Inventory.Contains("Picture"))
+                            {
+                                return null;
+                            }
+                            else
+                            {
+                                currentState.Inventory.Add("Piece of paper with a 4 in blue ink.");
+                                return "You picked up the small piec of paper. There is a 4 written on it with blue ink.";
+                            }
+                    }
+                    break;
             }
-            return false;
+            return null;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace LD_37
                     answer = TutorialIntentProcessor.Process(intent, currentState);
                     break;
                 case Location.Picture:
-                    //answer = PictureIntentProcessor.Process(intent, currentState);
+                    answer = PictureIntentProcessor.Process(intent, currentState);
                     break;
                 case Location.Door:
                     break;

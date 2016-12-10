@@ -28,6 +28,10 @@ namespace LD_37
         public const string ThingPicture = "Picture";
         public const string ThingDoor = "Door";
 
+        public const string ThingFloor = "Floor";
+        public const string ThingCrackInFloor = "CrackInFloor";
+        public const string ThingPaper = "Paper";
+
 
         public string Action { get; private set; }
         public string Thing { get; private set; }
