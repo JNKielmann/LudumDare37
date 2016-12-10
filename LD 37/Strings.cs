@@ -22,6 +22,10 @@ namespace LD_37
                 , Tutorial_Use_Key_IsEnchained_HasNoKey
                 , Tutorial_Use_LightSwitch_LightOn
                 , Tutorial_Use_LightSwitch_LightOff
+
+                , DoorIntent_LookAt_Door
+                , DoorIntent_LookAt_DoorKeyPad
+
                 , Unknown_Intent
         }
 
@@ -86,6 +90,18 @@ You are in a dark room. Maybe you could try to [look around]?"
             _strings.Add(
                     Keys.Tutorial_Use_LightSwitch_LightOff,
                    "The room is filled with light. The first thing you notice is the big wardrobe infront of you. Next to that you see a bed with a little nightstand. On the ground you see a picture, but you can not see whats on it from the distance. There is also a radio, maybe it still works? As you look behind you, you see a big steel door. What do you want to check out first?"
+                );
+
+
+            _strings.Add(
+                    Keys.DoorIntent_LookAt_Door,
+                    @"You are standing in front of a massive steel door and ask yourself ""Why the hell are you here?"".
+You can see that you need to enter a four digit password into a keypad to open the door.
+Maybe you can find some hints in this room?"
+                );
+            _strings.Add(
+                    Keys.DoorIntent_LookAt_DoorKeyPad,
+                    @"You look at a keypad that accepts four digits. Quite interesting isn't it?"
                 );
 
 

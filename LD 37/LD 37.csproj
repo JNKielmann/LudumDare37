@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoorIntentProcessor.cs" />
     <Compile Include="InputProcessor.cs" />
     <Compile Include="Intent.cs" />
     <Compile Include="IntentProcessor.cs" />

@@ -16,10 +16,11 @@ namespace LD_37
                 case Location.Tutorial:
                     answer = TutorialIntentProcessor.Process(intent, currentState);
                     break;
+                case Location.Door:
+                    answer = DoorIntentProcessor.Process(intent, currentState);
+                    break;
                 case Location.Picture:
                     //answer = PictureIntentProcessor.Process(intent, currentState);
-                    break;
-                case Location.Door:
                     break;
             }
             if (answer != null)

@@ -23,7 +23,7 @@ namespace LD_37
             {
                 foreach (var noun in Nouns)
                 {
-                    if (input.StartsWith(noun))
+                    if ((input + " ").StartsWith(noun + " "))
                     {
                         return true;
                     }
@@ -50,7 +50,7 @@ namespace LD_37
                 actuallyMatchedVerb = string.Empty;
                 foreach (var verb in Verbs.OrderByDescending(v => v.Length))
                 {
-                    if (input.StartsWith(verb))
+                    if (input.StartsWith(verb + " "))
                     {
                         actuallyMatchedVerb = verb;
                         return true;
@@ -67,6 +67,7 @@ namespace LD_37
         {
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
+                    , Intent.ThingDoor, Intent.ThingDoorKeyPad
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -91,7 +92,8 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingWardrobe, "wardrobe"));
             _nouns.Add(new Noun(Intent.ThingRadio, "radio"));
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
-            _nouns.Add(new Noun(Intent.ThingDoor, "door"));
+            _nouns.Add(new Noun(Intent.ThingDoor, "door", "steel door", "big door", "big steel door", "exit"));
+            _nouns.Add(new Noun(Intent.ThingDoorKeyPad, "keypad", "key pad"));
             _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
         }
 
