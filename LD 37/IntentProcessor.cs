@@ -24,7 +24,8 @@ namespace LD_37
             {
                 return answer;
             }
-            return "I have no idea...";
+
+            return Strings.Get(Strings.Keys.UnknownIntent);
         }
 
     }
