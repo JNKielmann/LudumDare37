@@ -8,15 +8,14 @@ namespace LD_37
 {
     class Program
     {
-
-
-
         static void Main(string[] args)
         {
+            Console.Title = "Ludum Dare 37";
+
             var state = new State();
             var inputProcessor = new InputProcessor();
             var intentProcessor = new IntentProcessor();
-            Console.WriteLine("You are in a dark room. Type \"look around.\"");
+            Console.WriteLine(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)
             {
                 var input = Console.ReadLine();
