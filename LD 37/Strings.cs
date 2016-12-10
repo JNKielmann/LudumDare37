@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace LD_37
 {
-    class Strings
+    public static class Strings
     {
+        public Dictionary<string, string> strings;
+        
+        public static string Get(string key)
+        {
+            return string.Empty;
+        }
     }
 }
