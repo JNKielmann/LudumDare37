@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD_37
 {
-    public class TutorialIntentProcessor 
+    public class TutorialIntentProcessor
     {
         static public bool Process(string intent, State currentState, out string result)
         {
@@ -18,10 +18,11 @@ namespace LD_37
                     result = "You see a small light in the distance. Maybe you should [go to] that light.";
                     return true;
                 case "GoToLight":
-                    if(currentState.TutorialState.NextToLightSwitch)
+                    if (currentState.TutorialState.NextToLightSwitch)
                     {
                         result = "You are already here. The small amout of light seems to be coming from a light switch. Maby you should [use] is.";
-                    } else
+                    }
+                    else
                     {
                         if (currentState.TutorialState.IsFree)
                         {
@@ -36,15 +37,16 @@ namespace LD_37
                     return true;
                 case "TakeKey":
                     result = "You took the key. Maybe you can [use] it to free yourself.";
-                    currentState.TutorialState.HasKey = true;
+                    currentState.Inventory.Add("Padlock key");
                     return true;
                 case "UseKey":
-                    if(currentState.TutorialState.IsFree)
+                    if (currentState.TutorialState.IsFree)
                     {
                         result = "You are already free. What are you waiting for? Go to that small light.";
-                    } else
+                    }
+                    else
                     {
-                        if (currentState.TutorialState.HasKey)
+                        if (currentState.Inventory.Contains("Padlock key"))
                         {
                             result = "You freed yourself and can move around freely. It's still dark though and you only see a small ligth";
                             currentState.TutorialState.IsFree = true;
@@ -66,7 +68,8 @@ namespace LD_37
                         {
                             result = "The room is filled with light. The first thing you notice is the big wardrobe infront of you. Next to that you see a bed with a little nightstand. On the ground you see a picture, but you can not see whats on it from the distance. There is also a radio, maybe it still works? As you look behind you, you see a big steel door. What do you want to check out first?";
                             currentState.TutorialState.LightOn = true;
-                        } else
+                        }
+                        else
                         {
                             return false;
                         }
