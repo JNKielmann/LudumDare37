@@ -54,7 +54,7 @@ namespace LD_37
                 }
             }
 
-            return Strings.Get(Strings.Keys.UnknownIntent);
+            return Strings.Get(Strings.Keys.Unknown_Intent);
         }
 
     }

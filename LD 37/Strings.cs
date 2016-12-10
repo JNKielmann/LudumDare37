@@ -16,12 +16,13 @@ namespace LD_37
                 , Tutorial_Goto_Light_IsFree
                 , Tutorial_Goto_Light_IsEnchained
                 , Tutorial_Take_Key
+                , Tutorial_Take_Key_AlreadyInInventory
                 , Tutorial_Use_Key_IsFree
                 , Tutorial_Use_Key_IsEnchained_HasKey
                 , Tutorial_Use_Key_IsEnchained_HasNoKey
                 , Tutorial_Use_LightSwitch_LightOn
                 , Tutorial_Use_LightSwitch_LightOff
-                , UnknownIntent
+                , Unknown_Intent
         }
 
         private static Dictionary<Keys, string> _strings;
@@ -63,6 +64,10 @@ You are in a dark room. Maybe you could try to [look around]?"
                     "You took the key. Maybe you can [use] it to free yourself."
                 );
             _strings.Add(
+                    Keys.Tutorial_Take_Key_AlreadyInInventory,
+                    "Take the key..what? Ohhh you mean the key that is already in your inventory...silly!"
+                );
+            _strings.Add(
                     Keys.Tutorial_Use_Key_IsFree,
                     "You are already free. What are you waiting for? Go to that small light."
                 );
@@ -85,7 +90,7 @@ You are in a dark room. Maybe you could try to [look around]?"
 
 
             _strings.Add(
-                    Keys.UnknownIntent,
+                    Keys.Unknown_Intent,
 @"I have no idea what you mean by that..."
                 );
         }
