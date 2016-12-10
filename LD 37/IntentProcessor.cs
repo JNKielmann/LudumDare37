@@ -29,30 +29,41 @@ namespace LD_37
             }
             else
             {
-                if (currentState.TutorialState.LightOn)
+                switch (intent.Action)
                 {
-                    if (intent.Action == Intent.ActionGoto)
-                    {
+                    case Intent.ActionGoto:
+                        if (currentState.TutorialState.LightOn)
+                        {
+
+                            switch (intent.Thing)
+                            {
+                                case Intent.ThingBed:
+                                    currentState.Location = Location.Bed;
+                                    return "You are now next to the Bed.";
+                                case Intent.ThingWardrobe:
+                                    currentState.Location = Location.Wardrobe;
+                                    return "You are now next to the Wardrobe.";
+                                case Intent.ThingRadio:
+                                    currentState.Location = Location.Radio;
+                                    return "You are now next to the Radio.";
+                                case Intent.ThingPicture:
+                                    currentState.Location = Location.Picture;
+                                    return "You are now next to the Picture.";
+                                case Intent.ThingDoor:
+                                    currentState.Location = Location.Door;
+                                    return "You are now next to the Door.";
+                            }
+                        }
+                        break;
+                    case Intent.ActionLookAt:
                         switch (intent.Thing)
                         {
-                            case Intent.ThingBed:
-                                currentState.Location = Location.Bed;
-                                return "You are now next to the Bed.";
-                            case Intent.ThingWardrobe:
-                                currentState.Location = Location.Wardrobe;
-                                return "You are now next to the Wardrobe.";
-                            case Intent.ThingRadio:
-                                currentState.Location = Location.Radio;
-                                return "You are now next to the Radio.";
-                            case Intent.ThingPicture:
-                                currentState.Location = Location.Picture;
-                                return "You are now next to the Picture.";
-                            case Intent.ThingDoor:
-                                currentState.Location = Location.Door;
-                                return "You are now next to the Door.";
+                            case Intent.ThingFloor:
+                                return "There is nothing on the floor";
                         }
-                    }
+                        break;
                 }
+
             }
 
             return Strings.Get(Strings.Keys.Unknown_Intent);

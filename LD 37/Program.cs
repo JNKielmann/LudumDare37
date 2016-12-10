@@ -15,7 +15,7 @@ namespace LD_37
             var state = new State();
             var inputProcessor = new InputProcessor();
             var intentProcessor = new IntentProcessor();
-#if DEBUG
+#if XDEBUG
             state.TutorialState.LightOn = true;
             state.Location = Location.Door;
 #endif

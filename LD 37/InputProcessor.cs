@@ -50,7 +50,7 @@ namespace LD_37
                 actuallyMatchedVerb = string.Empty;
                 foreach (var verb in Verbs.OrderByDescending(v => v.Length))
                 {
-                    if (input.StartsWith(verb + " "))
+                    if ((input + " ").StartsWith(verb + " "))
                     {
                         actuallyMatchedVerb = verb;
                         return true;

@@ -18,16 +18,16 @@ namespace LD_37
                         case Intent.ThingPicture:
                             return "The picture shows ....";
                         case Intent.ThingFloor:
-                            if (!currentState.Inventory.Contains("Picture"))
+                            if (!currentState.PictureState.PickedUpPicture)
                             {
-                                return null;
+                                return "There is a picture on the floor.";
                             }
                             else
                             {
                                 return "You see a small crack in the floor.";
                             }
                         case Intent.ThingCrackInFloor:
-                            if (!currentState.Inventory.Contains("Picture"))
+                            if (!currentState.PictureState.PickedUpPicture)
                             {
                                 return null;
                             }
@@ -41,24 +41,31 @@ namespace LD_37
                     switch (intent.Thing)
                     {
                         case Intent.ThingPicture:
-                            if (currentState.Inventory.Contains("Picture"))
+                            if (currentState.PictureState.PickedUpPicture)
                             {
                                 return "You already moved the Picture. You dont need to pick it up again.";
                             }
                             else
                             {
-
+                                currentState.PictureState.PickedUpPicture = true;
                                 return "As you pick up the picture you notice something on the floor. You put the picture aside.";
                             }
                         case Intent.ThingPaper:
-                            if (!currentState.Inventory.Contains("Picture"))
+                            if (!currentState.PictureState.PickedUpPicture)
                             {
                                 return null;
                             }
                             else
                             {
-                                currentState.Inventory.Add("Piece of paper with a 4 in blue ink.");
-                                return "You picked up the small piec of paper. There is a 4 written on it with blue ink.";
+                                if (currentState.Inventory.Contains("Piece of paper with a 4 in blue ink"))
+                                {
+                                    return "You already picked up the paper. Try look at inventory to read it again.";
+                                }
+                                else
+                                {
+                                    currentState.Inventory.Add("Piece of paper with a 4 in blue ink");
+                                    return "You picked up the small piece of paper and put it into your inventory. There is a 4 written on it with blue ink.";
+                                }
                             }
                     }
                     break;

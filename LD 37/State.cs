@@ -31,6 +31,7 @@ namespace LD_37
         public Location Location { get; set; } = Location.Tutorial;
 
         public TutorialState TutorialState { get; set; } = new TutorialState();
+        public PictureState PictureState { get; set; } = new PictureState();
         public List<string> Inventory { get; } = new List<string>();
     }
 }
