@@ -49,39 +49,39 @@ You are in a dark room. Maybe you could try to [look around]?"
                 );
             _strings.Add(
                     Keys.Tutorial_LookAtRom,
-                    "You see a small light in the distance. Maybe you should [go to] that light."
+                    "You see a small {light} in the distance. Maybe you should [go to] that {light}."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_NextTo,
-                    "You are already here. The small amout of light seems to be coming from a light switch. Maby you should [use] it."
+                    "You are already here. The small amout of light seems to be coming from a {light switch}. Maby you should [use] it."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_IsFree,
-                    "As you slowly make your way through the darkness you realiste that the small light is a lightswitch."
+                    "As you slowly make your way through the darkness you realiste that the small light is a {light switch}."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_IsEnchained,
-                    "You notice that you can not move because you are enchained. But you feel a key next to you. Maybe you should [take] it."
+                    "You notice that you can not move because you are enchained. But you feel a {key} next to you. Maybe you should [take] it."
                 );
             _strings.Add(
                     Keys.Tutorial_Take_Key,
-                    "You took the key. Maybe you can [use] it to free yourself."
+                    "You took the {key} and put it in your {inventory}. Maybe you can [use] it to free yourself."
                 );
             _strings.Add(
                     Keys.Tutorial_Take_Key_AlreadyInInventory,
-                    "Take the key..what? Ohhh you mean the key that is already in your inventory...silly!"
+                    "Take the {key}..what? Ohhh you mean the {key} that is already in your {inventory}...silly!"
                 );
             _strings.Add(
                     Keys.Tutorial_Use_Key_IsFree,
-                    "You are already free. What are you waiting for? Go to that small light."
+                    "You are already free. What are you waiting for? [Check out] that small {light}."
                 );
             _strings.Add(
                     Keys.Tutorial_Use_Key_IsEnchained_HasKey,
-                   "You freed yourself and can move around freely. It's still dark though and you only see a small ligth"
+                   "You freed yourself and can move around freely. It's still dark though and you only see a small {light}"
                 );
             _strings.Add(
                     Keys.Tutorial_Use_Key_IsEnchained_HasNoKey,
-                   "You don't have the key to free yourself."
+                   "You don't have the {key} to free yourself."
                 );
             _strings.Add(
                     Keys.Tutorial_Use_LightSwitch_LightOn,
@@ -89,19 +89,19 @@ You are in a dark room. Maybe you could try to [look around]?"
                 );
             _strings.Add(
                     Keys.Tutorial_Use_LightSwitch_LightOff,
-                   "The room is filled with light. The first thing you notice is the big wardrobe infront of you. Next to that you see a bed with a little nightstand. On the ground you see a picture, but you can not see whats on it from the distance. There is also a radio, maybe it still works? As you look behind you, you see a big steel door. What do you want to check out first?"
+                   "The room is filled with light. The first thing you notice is the big {wardrobe} infront of you. Next to that you see a {bed} with a little {nightstand}. On the ground you see a {picture}, but you can not see whats on it from the distance. There is also a {radio}, maybe it still works? As you look behind you, you see a big steel {door}. What do you want to [check out] first?"
                 );
 
 
             _strings.Add(
                     Keys.DoorIntent_LookAt_Door,
-                    @"You are standing in front of a massive steel door and ask yourself ""Why the hell are you here?"".
-You can see that you need to enter a four digit password into a keypad to open the door.
+                    @"You are standing in front of a massive steel {door} and ask yourself ""Why the hell are you here?"".
+You can see that you need to enter a four digit password into a {keypad} to open the door. The digits seem to be colored. What does that mean?
 Maybe you can find some hints in this room?"
                 );
             _strings.Add(
                     Keys.DoorIntent_LookAt_DoorKeyPad,
-                    @"You look at a keypad that accepts four digits. Quite interesting isn't it?"
+                    @"You look at a {keypad} that accepts four digits. The first digit is blue, the second red, the third yello and the last one is green. Quite interesting isn't it?"
                 );
 
 

@@ -19,14 +19,40 @@ namespace LD_37
             state.TutorialState.LightOn = true;
             state.Location = Location.Door;
 #endif
-            Console.WriteLine(Strings.Get(Strings.Keys.Tutorial_Introduction));
+            WriteInColor(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)
             {
+                Console.Write("> ");
                 var input = Console.ReadLine();
+                Console.WriteLine();
                 var intent = inputProcessor.Process(input);
                 var answer = intentProcessor.Process(intent, state);
-                Console.WriteLine(answer);
+                WriteInColor(answer);
+                
             }
+        }
+
+        static void WriteInColor(string text)
+        {
+            foreach (char character in text) {
+                switch(character)
+                {
+                    case '[':
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        break;
+                    case '{':
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        break;
+                    case ']':
+                    case '}':
+                        Console.ResetColor();
+                        break;
+                    default:
+                        Console.Write(character);
+                        break;
+                }
+            }
+            Console.WriteLine();
         }
     }
 }

@@ -20,11 +20,11 @@ namespace LD_37
                         case Intent.ThingFloor:
                             if (!currentState.PictureState.PickedUpPicture)
                             {
-                                return "There is a picture on the floor.";
+                                return "There is a {picture} on the {floor}.";
                             }
                             else
                             {
-                                return "You see a small crack in the floor.";
+                                return "You see a small {crack} in the {floor}.";
                             }
                         case Intent.ThingCrackInFloor:
                             if (!currentState.PictureState.PickedUpPicture)
@@ -33,7 +33,7 @@ namespace LD_37
                             }
                             else
                             {
-                                return "You see a small piece of paper";
+                                return "You see a small {piece of paper}";
                             }
                     }
                     break;
@@ -43,12 +43,12 @@ namespace LD_37
                         case Intent.ThingPicture:
                             if (currentState.PictureState.PickedUpPicture)
                             {
-                                return "You already moved the Picture. You dont need to pick it up again.";
+                                return "You already moved the {picture}. You dont need to pick it up again.";
                             }
                             else
                             {
                                 currentState.PictureState.PickedUpPicture = true;
-                                return "As you pick up the picture you notice something on the floor. You put the picture aside.";
+                                return "As you [pick up] the {picture} you notice something on the {floor}. You put the {picture} aside.";
                             }
                         case Intent.ThingPaper:
                             if (!currentState.PictureState.PickedUpPicture)
@@ -57,14 +57,14 @@ namespace LD_37
                             }
                             else
                             {
-                                if (currentState.Inventory.Contains("Piece of paper with a 4 in blue ink"))
+                                if (currentState.Inventory.Contains("{Piece of paper} with a 4 in blue ink"))
                                 {
-                                    return "You already picked up the paper. Try look at inventory to read it again.";
+                                    return "You already picked up the {paper}. Try [look at] {inventory} to read it again.";
                                 }
                                 else
                                 {
                                     currentState.Inventory.Add("Piece of paper with a 4 in blue ink");
-                                    return "You picked up the small piece of paper and put it into your inventory. There is a 4 written on it with blue ink.";
+                                    return "You picked up the small {piece of paper} and put it into your {inventory} to [look at] it again later. There is a 4 written on it with blue ink.";
                                 }
                             }
                     }

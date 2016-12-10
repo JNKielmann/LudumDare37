@@ -87,7 +87,7 @@ namespace LD_37
                     , Intent.ThingKey, Intent.ThingLightSwitch
                 ));
 
-            _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource"));
+            _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
             _nouns.Add(new Noun(Intent.ThingBed, "bed"));
             _nouns.Add(new Noun(Intent.ThingWardrobe, "wardrobe"));
