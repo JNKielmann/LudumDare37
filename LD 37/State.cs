@@ -16,8 +16,17 @@ namespace LD_37
         Exit,
         Window
     }
+    public class TutorialState
+    {
+        public bool HasKey { get; set; } = false;
+        public bool IsFree { get; set; } = false;
+        public bool NextToLightSwitch { get; set; } = false;
+        public bool LightOn { get; set; } = false;
+    }
     public class State
     {
-        public Location Location { get; set; } = Location.Tutorial;         
+        public Location Location { get; set; } = Location.Tutorial;
+
+        public TutorialState TutorialState { get; set; } = new TutorialState();
     }
 }
