@@ -13,7 +13,7 @@ namespace LD_37
         Wardrobe,
         Radio,
         Picture,
-        Exit,
+        Door,
         Window
     }
     public class TutorialState

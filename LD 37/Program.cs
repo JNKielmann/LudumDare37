@@ -20,7 +20,7 @@ namespace LD_37
             {
                 var input = Console.ReadLine();
                 var intent = inputProcessor.Process(input);
-                var answer = intentProcessor.Process(intent.Merged, state);
+                var answer = intentProcessor.Process(intent, state);
                 Console.WriteLine(answer);
             }
         }

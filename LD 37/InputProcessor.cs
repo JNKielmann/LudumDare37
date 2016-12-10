@@ -8,36 +8,6 @@ namespace LD_37
 {
     public class InputProcessor
     {
-        //private class IntentMatcher
-        //{
-        //    private List<string> _matches = new List<string>();
-        //    private string _intentKey;
-
-        //    public IntentMatcher(string intentKey, params string[] matches)
-        //    {
-        //        _intentKey = intentKey;
-        //        _matches.AddRange(matches);
-        //    }
-
-        //    public bool TryMatch(string input, out string intentKey)
-        //    {
-        //        intentKey = string.Empty;
-
-        //        //foreach (var match in _matches)
-        //        //{
-        //        //    if (input == match)
-        //        //    {
-        //        //        intentKey = _intentKey;
-        //        //        return true;
-        //        //    }
-        //        //}
-
-        //        //if (input.StartsWith("go") || input.StartsWith("go"))
-
-        //        return false;
-        //    }
-        //}
-
         public class Noun
         {
             public string NounKey { get; private set; }
@@ -95,32 +65,34 @@ namespace LD_37
 
         static InputProcessor()
         {
-            //_dict.Add(new IntentMatcher(Intent._42, "what is the meaning of life", "the answer to life the universe and everything"));
-
-            //_dict.Add(new IntentMatcher(Intent.LookAtRoom, "look", "look around", "look at room", "lookaround"));
-            //_dict.Add(new IntentMatcher(Intent.Goto, "go to", "goto"));
-            //_dict.Add(new IntentMatcher(Intent.GotoLight, "go to light", "goto light", "gotolight", "checkout light"));
-            //_dict.Add(new IntentMatcher(Intent.Take, "take"));
-            //_dict.Add(new IntentMatcher(Intent.TakeKey, "take key", "takekey"));
-            //_dict.Add(new IntentMatcher(Intent.Use, "use"));
-            //_dict.Add(new IntentMatcher(Intent.UseKey, "use key", "usekey"));
-
+            _verbs.Add(new Verb(Intent.ActionLookAt
+                    , new string[] { "look at" }
+                ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
                 ));
-
             _verbs.Add(new Verb(Intent.ActionGoto
                     , new string[] { "go to", "goto", "checkout", "check out" }
-                    , Intent.ThingLight
+                    , Intent.ThingLight, Intent.ThingBed, Intent.ThingWardrobe, Intent.ThingRadio, Intent.ThingPicture, Intent.ThingDoor
                 ));
 
             _verbs.Add(new Verb(Intent.ActionTake
                     , new string[] { "take", "pick up" }
                     , Intent.ThingKey
                 ));
+            _verbs.Add(new Verb(Intent.ActionUse
+                    , new string[] { "use" }
+                    , Intent.ThingKey, Intent.ThingLightSwitch
+                ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
+            _nouns.Add(new Noun(Intent.ThingBed, "bed"));
+            _nouns.Add(new Noun(Intent.ThingWardrobe, "wardrobe"));
+            _nouns.Add(new Noun(Intent.ThingRadio, "radio"));
+            _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
+            _nouns.Add(new Noun(Intent.ThingDoor, "door"));
+            _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
         }
 
 
@@ -166,13 +138,6 @@ namespace LD_37
             }
             if (matchedNoun == null || !matchedVerb.NounKeys.Contains(matchedNoun.NounKey))
                 return new Intent(matchedVerb.VerbKey, input, true);
-
-            //var intentKey = string.Empty;
-            //foreach (var matcher in _dict)
-            //{
-            //    if (matcher.TryMatch(input, out intentKey))
-            //        return new Intent(intentKey);
-            //}
 
             return new Intent(matchedVerb.VerbKey, matchedNoun.NounKey);
         }
