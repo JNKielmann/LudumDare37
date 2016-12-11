@@ -10,5 +10,6 @@ namespace LD_37
     {
         public const string PieceOfPaper = "{Piece of paper} with a 4 in blue ink";
         public const string PadlockKey = "{Padlock Key}";
+        public const string Battery = "{Battery}";
     }
 }
