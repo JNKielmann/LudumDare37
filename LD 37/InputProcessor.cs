@@ -67,6 +67,9 @@ namespace LD_37
 
         static InputProcessor()
         {
+            _verbs.Add(new Verb(Intent.ActionInventory
+                , new string[] { "inventory", "look at inventory", "open inventory" }
+            ));
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
                     , Intent.ThingPicture
@@ -79,6 +82,7 @@ namespace LD_37
                     , Intent.ThingBed
                     , Intent.ThingBedNightstand
                     , Intent.ThingBedDrawer
+                    , Intent.ThingWardrobe
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -121,11 +125,16 @@ namespace LD_37
                     , new string[] { "open" }
                     , Intent.ThingDoor
                     , Intent.ThingBedDrawer
+                    , Intent.ThingWardrobe
                 ));
             _verbs.Add(new Verb(Intent.ActionRead
                     , new string[] { "read" }
                     , Intent.ThingDoorPostIt
                 ));
+            _verbs.Add(new Verb(Intent.ActionSearch
+                , new string[] { "search", "search in", "examine" }
+                , Intent.ThingWardrobe, Intent.ThingClothes
+            ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
@@ -144,6 +153,7 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingPaper, "paper", "piece of paper", "small piece of paper"));
             _nouns.Add(new Noun(Intent.ThingChannel, "channel", "frequency", "station"));
             _nouns.Add(new Noun(Intent.ThingBattery, "battery"));
+            _nouns.Add(new Noun(Intent.ThingClothes, "clothes"));
 
         }
 

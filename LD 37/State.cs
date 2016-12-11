@@ -44,6 +44,10 @@ namespace LD_37
         public bool DrawerIsLocked { get; set; } = true;
         public bool DrawerIsClosed { get; set; } = true;
     }
+    public class WardrobeState
+    {
+        public bool IsOpen { get; set; } = false;
+    }
     public class State
     {
         public Location Location { get; set; } = Location.Tutorial;
@@ -53,6 +57,7 @@ namespace LD_37
         public RadioState RadioState { get; set; } = new RadioState();
         public DoorState DoorState { get; set; } = new DoorState();
         public BedState BedState { get; set; } = new BedState();
+        public WardrobeState WardrobeState { get; set; } = new WardrobeState();
         public List<string> Inventory { get; } = new List<string>();
     }
 }

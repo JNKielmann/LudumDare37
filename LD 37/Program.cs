@@ -17,6 +17,7 @@ namespace LD_37
             var intentProcessor = new IntentProcessor();
 #if DEBUG
             state.Location = Location.Bed;
+            state.TutorialState.LightOn = true;
 #endif
             WriteInColor(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)

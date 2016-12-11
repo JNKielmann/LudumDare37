@@ -21,7 +21,10 @@ namespace LD_37
         public const string ActionUse = "Use";
         public const string ActionSwitch = "Switch";
         public const string ActionRead = "Read";
+        public const string ActionSearch = "Search";
+        public const string ActionInventory = "Inventory";
 
+        public const string ThingInventory = "Inventory";
         public const string ThingLight = "Light";
         public const string ThingKey = "Key";
         public const string ThingLightSwitch = "LightSwitch";
@@ -42,6 +45,9 @@ namespace LD_37
 
         public const string ThingChannel = "Channel";
         public const string ThingBattery = "Battery";
+
+        public const string ThingClothes = "Clothes";
+
 
 
 
