@@ -16,7 +16,7 @@ namespace LD_37
             var inputProcessor = new InputProcessor();
             var intentProcessor = new IntentProcessor();
 #if DEBUG
-            state.Location = Location.Radio;
+            state.Location = Location.Bed;
 #endif
             WriteInColor(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)

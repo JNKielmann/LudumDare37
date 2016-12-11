@@ -27,6 +27,8 @@ namespace LD_37
         public const string ThingLightSwitch = "LightSwitch";
 
         public const string ThingBed = "Bed";
+        public const string ThingBedNightstand = "Nightstand";
+        public const string ThingBedDrawer = "Drawer";
         public const string ThingWardrobe = "Wardrobe";
         public const string ThingRadio = "Radio";
         public const string ThingPicture = "Picture";

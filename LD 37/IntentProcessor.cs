@@ -25,6 +25,9 @@ namespace LD_37
                 case Location.Radio:
                     answer = RadioIntentProcessor.Process(intent, currentState);
                     break;
+                case Location.Bed:
+                    answer = BedIntentProcessor.Process(intent, currentState);
+                    break;
             }
             if (answer != null)
             {

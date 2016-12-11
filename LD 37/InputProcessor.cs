@@ -69,13 +69,16 @@ namespace LD_37
         {
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
-                    , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
-                    , Intent.ThingDoor, Intent.ThingDoorKeyPad, Intent.ThingRadio
+                    , Intent.ThingPicture
+                    , Intent.ThingRadio
                     , Intent.ThingPicture
                     , Intent.ThingFloor
                     , Intent.ThingCrackInFloor
                     , Intent.ThingDoor
                     , Intent.ThingDoorKeyPad
+                    , Intent.ThingBed
+                    , Intent.ThingBedNightstand
+                    , Intent.ThingBedDrawer
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -117,6 +120,7 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionOpen
                     , new string[] { "open" }
                     , Intent.ThingDoor
+                    , Intent.ThingBedDrawer
                 ));
             _verbs.Add(new Verb(Intent.ActionRead
                     , new string[] { "read" }
@@ -126,6 +130,8 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
             _nouns.Add(new Noun(Intent.ThingBed, "bed"));
+            _nouns.Add(new Noun(Intent.ThingBedNightstand, "nightstand", "night stand", "night table", "bedside table"));
+            _nouns.Add(new Noun(Intent.ThingBedDrawer, "drawer", "third drawer"));
             _nouns.Add(new Noun(Intent.ThingWardrobe, "wardrobe"));
             _nouns.Add(new Noun(Intent.ThingRadio, "radio"));
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
@@ -135,7 +141,7 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
             _nouns.Add(new Noun(Intent.ThingFloor, "floor"));
             _nouns.Add(new Noun(Intent.ThingCrackInFloor, "crack in floor", "crack"));
-            _nouns.Add(new Noun(Intent.ThingPaper, "paper"));
+            _nouns.Add(new Noun(Intent.ThingPaper, "paper", "piece of paper", "small piece of paper"));
             _nouns.Add(new Noun(Intent.ThingChannel, "channel", "frequency", "station"));
             _nouns.Add(new Noun(Intent.ThingBattery, "battery"));
 
