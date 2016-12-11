@@ -47,6 +47,7 @@
     <Compile Include="InputProcessor.cs" />
     <Compile Include="Intent.cs" />
     <Compile Include="IntentProcessor.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="PictureIntentProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -101,7 +101,8 @@ Maybe you can find some hints in this room?"
                 );
             _strings.Add(
                     Keys.DoorIntent_LookAt_DoorKeyPad,
-                    @"You look at a {keypad} that accepts four digits. The first digit is blue, the second red, the third yello and the last one is green. Quite interesting isn't it?"
+                    @"You look at a {keypad} that accepts four digits. The first digit is blue, the second red, the third yello and the last one is green. 
+Quite interesting isn't it?"
                 );
 
 

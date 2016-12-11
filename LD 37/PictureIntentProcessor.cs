@@ -61,13 +61,13 @@ namespace LD_37
                             }
                             else
                             {
-                                if (currentState.Inventory.Contains("{Piece of paper} with a 4 in blue ink"))
+                                if (currentState.Inventory.Contains(Inventory.PieceOfPaper))
                                 {
                                     return "You already picked up the {paper}. Try [look at] {inventory} to read it again.";
                                 }
                                 else
                                 {
-                                    currentState.Inventory.Add("Piece of paper with a 4 in blue ink");
+                                    currentState.Inventory.Add(Inventory.PieceOfPaper);
                                     return "You picked up the small {piece of paper} and put it into your {inventory} to [look at] it again later. There is a 4 written on it with blue ink.";
                                 }
                             }

@@ -35,7 +35,7 @@ namespace LD_37
                                 }
                                 else
                                 {
-                                    return "It works! But you only hear a static noise. You should try to change the channel.";
+                                    return "It works! But you only hear a static noise. You should try to switch the channel.";
                                 }
                             }
                             else
@@ -43,7 +43,7 @@ namespace LD_37
                                 return "You press the on button but nothing happens. Maybe the batteries died.";
                             }
                         case Intent.ThingBattery:
-                            if (currentState.Inventory.Contains("Battery"))
+                            if (!currentState.Inventory.Contains("Battery"))
                             {
                                 currentState.RadioState.HasPower = true;
                                 return "You put the battery into the radio";

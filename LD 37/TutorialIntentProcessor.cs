@@ -41,13 +41,13 @@ namespace LD_37
                     switch (intent.Thing)
                     {
                         case Intent.ThingKey:
-                            if (currentState.Inventory.Contains("Padlock key"))
+                            if (currentState.Inventory.Contains(Inventory.PadlockKey))
                             {
                                 return Strings.Get(Strings.Keys.Tutorial_Take_Key_AlreadyInInventory);
                             }
                             else
                             { 
-                                currentState.Inventory.Add("Padlock key");
+                                currentState.Inventory.Add(Inventory.PadlockKey);
                                 return Strings.Get(Strings.Keys.Tutorial_Take_Key);
                             }
                     }
@@ -62,7 +62,7 @@ namespace LD_37
                             }
                             else
                             {
-                                if (currentState.Inventory.Contains("Padlock key"))
+                                if (currentState.Inventory.Contains(Inventory.PadlockKey))
                                 {
                                     currentState.TutorialState.IsFree = true;
                                     return Strings.Get(Strings.Keys.Tutorial_Use_Key_IsEnchained_HasKey);

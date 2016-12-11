@@ -19,12 +19,14 @@ namespace LD_37
                 Nouns = new List<string>(nouns);
             }
 
-            public bool TryMatch(string input)
+            public bool TryMatch(string input, out string actuallyMatchedNoun)
             {
-                foreach (var noun in Nouns)
+                actuallyMatchedNoun = string.Empty;
+                foreach (var noun in Nouns.OrderByDescending(n => n.Length))
                 {
                     if ((input + " ").StartsWith(noun + " "))
                     {
+                        actuallyMatchedNoun = noun;
                         return true;
                     }
                 }
@@ -69,27 +71,56 @@ namespace LD_37
                     , new string[] { "look at" }
                     , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
                     , Intent.ThingDoor, Intent.ThingDoorKeyPad, Intent.ThingRadio
+                    , Intent.ThingPicture
+                    , Intent.ThingFloor
+                    , Intent.ThingCrackInFloor
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
                 ));
             _verbs.Add(new Verb(Intent.ActionGoto
                     , new string[] { "go", "go to", "goto", "checkout", "check out" }
-                    , Intent.ThingLight, Intent.ThingBed, Intent.ThingWardrobe, Intent.ThingRadio, Intent.ThingPicture, Intent.ThingDoor
+                    , Intent.ThingLight
+                    , Intent.ThingBed
+                    , Intent.ThingWardrobe
+                    , Intent.ThingRadio
+                    , Intent.ThingPicture
+                    , Intent.ThingDoor
                 ));
 
             _verbs.Add(new Verb(Intent.ActionTake
                     , new string[] { "take", "pick up" }
-                    , Intent.ThingKey, Intent.ThingPicture, Intent.ThingPaper
+                    , Intent.ThingKey
+                    , Intent.ThingPicture
+                    , Intent.ThingPaper
                 ));
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
                     , Intent.ThingKey, Intent.ThingLightSwitch
                     , Intent.ThingRadio, Intent.ThingBattery
+                    , Intent.ThingKey
+                    , Intent.ThingLightSwitch
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
                 ));
             _verbs.Add(new Verb(Intent.ActionSwitch
-                    , new string[] { "switch", "set", "switch to" }
+                    , new string[] { "switch", "set", "switch to", "change", "change to" }
                     , Intent.ThingChannel
+                ));
+            _verbs.Add(new Verb(Intent.ActionEnter
+                    , new string[] { "enter" }
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
+                ));
+            _verbs.Add(new Verb(Intent.ActionOpen
+                    , new string[] { "open" }
+                    , Intent.ThingDoor
+                ));
+            _verbs.Add(new Verb(Intent.ActionRead
+                    , new string[] { "read" }
+                    , Intent.ThingDoorPostIt
                 ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
@@ -100,6 +131,7 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
             _nouns.Add(new Noun(Intent.ThingDoor, "door", "steel door", "big door", "big steel door", "exit"));
             _nouns.Add(new Noun(Intent.ThingDoorKeyPad, "keypad", "key pad"));
+            _nouns.Add(new Noun(Intent.ThingDoorPostIt, "post-it note", "post-it", "note", "post it", "post it note"));
             _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
             _nouns.Add(new Noun(Intent.ThingFloor, "floor"));
             _nouns.Add(new Noun(Intent.ThingCrackInFloor, "crack in floor", "crack"));
@@ -139,21 +171,28 @@ namespace LD_37
                 return new Intent(Intent.ActionWTF);
 
             if (input.Length == 0)
-                return new Intent(matchedVerb.VerbKey);
+                return new Intent(matchedVerb.VerbKey, string.Empty, true);
 
-            Noun matchedNoun = null;
+            var matchedNouns = new Dictionary<string, Noun>();
+            string actuallyMatchedNoun = string.Empty;
             foreach (var noun in _nouns)
             {
-                if (noun.TryMatch(input))
+                if (noun.TryMatch(input, out actuallyMatchedNoun))
                 {
-                    matchedNoun = noun;
-                    break;
+                    matchedNouns.Add(actuallyMatchedNoun, noun);
                 }
             }
+            if (matchedNouns.Count == 0)
+                return new Intent(matchedVerb.VerbKey, input, true);
+            var matchedNounPair = matchedNouns.OrderByDescending(pair => pair.Key.Length).FirstOrDefault();
+            var matchedNoun = matchedNounPair.Value;
             if (matchedNoun == null || !matchedVerb.NounKeys.Contains(matchedNoun.NounKey))
                 return new Intent(matchedVerb.VerbKey, input, true);
 
-            return new Intent(matchedVerb.VerbKey, matchedNoun.NounKey);
+
+            input = input.Replace(matchedNounPair.Key, "").Trim();
+
+            return new Intent(matchedVerb.VerbKey, matchedNoun.NounKey, false, input);
         }
     }
 }

@@ -12,13 +12,15 @@ namespace LD_37
 
         public const string _42 = "42";
 
+        public const string ActionEnter = "Enter";
+        public const string ActionOpen = "Open";
         public const string ActionLookAtRoom = "LookAtRoom";
         public const string ActionLookAt = "LookAt";
         public const string ActionGoto = "Goto";
         public const string ActionTake = "Take";
         public const string ActionUse = "Use";
         public const string ActionSwitch = "Switch";
-
+        public const string ActionRead = "Read";
 
         public const string ThingLight = "Light";
         public const string ThingKey = "Key";
@@ -30,6 +32,7 @@ namespace LD_37
         public const string ThingPicture = "Picture";
         public const string ThingDoor = "Door";
         public const string ThingDoorKeyPad = "KeyPad";
+        public const string ThingDoorPostIt = "PostItNote";
 
         public const string ThingFloor = "Floor";
         public const string ThingCrackInFloor = "CrackInFloor";
