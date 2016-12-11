@@ -19,12 +19,14 @@ namespace LD_37
                 Nouns = new List<string>(nouns);
             }
 
-            public bool TryMatch(string input)
+            public bool TryMatch(string input, out string actuallyMatchedNoun)
             {
-                foreach (var noun in Nouns)
+                actuallyMatchedNoun = string.Empty;
+                foreach (var noun in Nouns.OrderByDescending(n => n.Length))
                 {
                     if ((input + " ").StartsWith(noun + " "))
                     {
+                        actuallyMatchedNoun = noun;
                         return true;
                     }
                 }
@@ -134,19 +136,26 @@ namespace LD_37
             if (input.Length == 0)
                 return new Intent(matchedVerb.VerbKey);
 
-            Noun matchedNoun = null;
+            var matchedNouns = new Dictionary<string, Noun>();
+            string actuallyMatchedNoun = string.Empty;
             foreach (var noun in _nouns)
             {
-                if (noun.TryMatch(input))
+                if (noun.TryMatch(input, out actuallyMatchedNoun))
                 {
-                    matchedNoun = noun;
-                    break;
+                    matchedNouns.Add(actuallyMatchedNoun, noun);
                 }
             }
+            if (matchedNouns.Count == 0)
+                return new Intent(matchedVerb.VerbKey, input, true);
+            var matchedNounPair = matchedNouns.OrderByDescending(pair => pair.Key.Length).FirstOrDefault();
+            var matchedNoun = matchedNounPair.Value;
             if (matchedNoun == null || !matchedVerb.NounKeys.Contains(matchedNoun.NounKey))
                 return new Intent(matchedVerb.VerbKey, input, true);
 
-            return new Intent(matchedVerb.VerbKey, matchedNoun.NounKey);
+
+            input = input.Replace(matchedNounPair.Key, "").Trim();
+
+            return new Intent(matchedVerb.VerbKey, matchedNoun.NounKey, false, input);
         }
     }
 }
