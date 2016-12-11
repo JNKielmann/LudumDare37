@@ -69,24 +69,36 @@ namespace LD_37
         {
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
-                    , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
-                    , Intent.ThingDoor, Intent.ThingDoorKeyPad
+                    , Intent.ThingPicture
+                    , Intent.ThingFloor
+                    , Intent.ThingCrackInFloor
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
                 ));
             _verbs.Add(new Verb(Intent.ActionGoto
                     , new string[] { "go to", "goto", "checkout", "check out" }
-                    , Intent.ThingLight, Intent.ThingBed, Intent.ThingWardrobe, Intent.ThingRadio, Intent.ThingPicture, Intent.ThingDoor
+                    , Intent.ThingLight
+                    , Intent.ThingBed
+                    , Intent.ThingWardrobe
+                    , Intent.ThingRadio
+                    , Intent.ThingPicture
+                    , Intent.ThingDoor
                 ));
 
             _verbs.Add(new Verb(Intent.ActionTake
                     , new string[] { "take", "pick up" }
-                    , Intent.ThingKey, Intent.ThingPicture, Intent.ThingPaper
+                    , Intent.ThingKey
+                    , Intent.ThingPicture
+                    , Intent.ThingPaper
                 ));
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
-                    , Intent.ThingKey, Intent.ThingLightSwitch
+                    , Intent.ThingKey
+                    , Intent.ThingLightSwitch
+                    , Intent.ThingDoorKeyPad
                 ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
