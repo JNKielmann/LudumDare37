@@ -68,13 +68,13 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
                     , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
-                    , Intent.ThingDoor, Intent.ThingDoorKeyPad
+                    , Intent.ThingDoor, Intent.ThingDoorKeyPad, Intent.ThingRadio
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
                 ));
             _verbs.Add(new Verb(Intent.ActionGoto
-                    , new string[] { "go to", "goto", "checkout", "check out" }
+                    , new string[] { "go", "go to", "goto", "checkout", "check out" }
                     , Intent.ThingLight, Intent.ThingBed, Intent.ThingWardrobe, Intent.ThingRadio, Intent.ThingPicture, Intent.ThingDoor
                 ));
 
@@ -85,6 +85,11 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
                     , Intent.ThingKey, Intent.ThingLightSwitch
+                    , Intent.ThingRadio, Intent.ThingBattery
+                ));
+            _verbs.Add(new Verb(Intent.ActionSwitch
+                    , new string[] { "switch", "set", "switch to" }
+                    , Intent.ThingChannel
                 ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
@@ -99,6 +104,8 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingFloor, "floor"));
             _nouns.Add(new Noun(Intent.ThingCrackInFloor, "crack in floor", "crack"));
             _nouns.Add(new Noun(Intent.ThingPaper, "paper"));
+            _nouns.Add(new Noun(Intent.ThingChannel, "channel", "frequency", "station"));
+            _nouns.Add(new Noun(Intent.ThingBattery, "battery"));
 
         }
 

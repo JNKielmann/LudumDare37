@@ -10,11 +10,19 @@ namespace LD_37
     {
         static public string Process(Intent intent, State currentState)
         {
+            if(string.IsNullOrEmpty(intent.Thing))
+            {
+                return null;
+            }
             switch (intent.Action)
             {
                 case Intent.ActionLookAtRoom:
                     return Strings.Get(Strings.Keys.Tutorial_LookAtRom);
                 case Intent.ActionGoto:
+                    if(!currentState.TutorialState.IsFree)
+                    {
+                        return Strings.Get(Strings.Keys.Tutorial_Goto_Light_IsEnchained);
+                    }
                     switch(intent.Thing)
                     {
                         case Intent.ThingLight:
@@ -24,15 +32,8 @@ namespace LD_37
                             }
                             else
                             {
-                                if (currentState.TutorialState.IsFree)
-                                {
-                                    currentState.TutorialState.NextToLightSwitch = true;
-                                    return Strings.Get(Strings.Keys.Tutorial_Goto_Light_IsFree);
-                                }
-                                else
-                                {
-                                    return Strings.Get(Strings.Keys.Tutorial_Goto_Light_IsEnchained);
-                                }
+                                currentState.TutorialState.NextToLightSwitch = true;
+                                return Strings.Get(Strings.Keys.Tutorial_Goto_Light_IsFree);
                             }
                     }
                     break;

@@ -22,6 +22,9 @@ namespace LD_37
                 case Location.Picture:
                     answer = PictureIntentProcessor.Process(intent, currentState);
                     break;
+                case Location.Radio:
+                    answer = RadioIntentProcessor.Process(intent, currentState);
+                    break;
             }
             if (answer != null)
             {
@@ -32,9 +35,18 @@ namespace LD_37
                 switch (intent.Action)
                 {
                     case Intent.ActionGoto:
+                        if(intent.IsInvalidThing)
+                        {
+                            if(string.IsNullOrEmpty(intent.Thing))
+                            {
+                                return "Where do you want to [go]?";
+                            } else
+                            {
+                                return $"I don't know where {{{intent.Thing}}} is.";
+                            }
+                        }
                         if (currentState.TutorialState.LightOn)
                         {
-
                             switch (intent.Thing)
                             {
                                 case Intent.ThingBed:
@@ -56,10 +68,47 @@ namespace LD_37
                         }
                         break;
                     case Intent.ActionLookAt:
+                        if (intent.IsInvalidThing)
+                        {
+                            if (string.IsNullOrEmpty(intent.Thing))
+                            {
+                                return "What do you want to [look at]?";
+                            }
+                            else
+                            {
+                                return $"Right now you cann't see {{{intent.Thing}}}...";
+                            }
+                        }
                         switch (intent.Thing)
                         {
                             case Intent.ThingFloor:
-                                return "There is nothing on the floor";
+                                return "There is nothing on the floor.";
+                        }
+                        break;
+                    case Intent.ActionTake:
+                        if (intent.IsInvalidThing)
+                        {
+                            if (string.IsNullOrEmpty(intent.Thing))
+                            {
+                                return "What do you want to [take]?";
+                            }
+                            else
+                            {
+                                return $"There is no {{{intent.Thing}}} you could pick up.";
+                            }
+                        }
+                        break;
+                    case Intent.ActionUse:
+                        if (intent.IsInvalidThing)
+                        {
+                            if (string.IsNullOrEmpty(intent.Thing))
+                            {
+                                return "What do you want to [use]?";
+                            }
+                            else
+                            {
+                                return $"Right now you cann't use {{{intent.Thing}}}.";
+                            }
                         }
                         break;
                 }

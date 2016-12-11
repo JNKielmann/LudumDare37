@@ -17,6 +17,8 @@ namespace LD_37
         public const string ActionGoto = "Goto";
         public const string ActionTake = "Take";
         public const string ActionUse = "Use";
+        public const string ActionSwitch = "Switch";
+
 
         public const string ThingLight = "Light";
         public const string ThingKey = "Key";
@@ -32,6 +34,11 @@ namespace LD_37
         public const string ThingFloor = "Floor";
         public const string ThingCrackInFloor = "CrackInFloor";
         public const string ThingPaper = "Paper";
+
+        public const string ThingChannel = "Channel";
+        public const string ThingBattery = "Battery";
+
+
 
 
         public string Action { get; private set; }

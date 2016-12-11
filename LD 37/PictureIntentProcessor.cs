@@ -10,6 +10,10 @@ namespace LD_37
     {
         static public string Process(Intent intent, State currentState)
         {
+            if (intent.IsInvalidThing)
+            {
+                return null;
+            }
             switch (intent.Action)
             {
                 case Intent.ActionLookAt:
