@@ -15,9 +15,10 @@ namespace LD_37
             var state = new State();
             var inputProcessor = new InputProcessor();
             var intentProcessor = new IntentProcessor();
-#if XDEBUG
+#if DEBUG
             state.TutorialState.LightOn = true;
             state.Location = Location.Door;
+            state.DoorState.FinalDecicsion_ReadPostIt = true;
 #endif
             WriteInColor(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)
@@ -43,8 +44,12 @@ namespace LD_37
                     case '{':
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         break;
+                    case '<':
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
                     case ']':
                     case '}':
+                    case '>':
                         Console.ResetColor();
                         break;
                     default:

@@ -98,7 +98,21 @@ namespace LD_37
                     , new string[] { "use" }
                     , Intent.ThingKey
                     , Intent.ThingLightSwitch
+                    , Intent.ThingDoor
                     , Intent.ThingDoorKeyPad
+                ));
+            _verbs.Add(new Verb(Intent.ActionEnter
+                    , new string[] { "enter" }
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
+                ));
+            _verbs.Add(new Verb(Intent.ActionOpen
+                    , new string[] { "open" }
+                    , Intent.ThingDoor
+                ));
+            _verbs.Add(new Verb(Intent.ActionRead
+                    , new string[] { "read" }
+                    , Intent.ThingDoorPostIt
                 ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
@@ -109,6 +123,7 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));
             _nouns.Add(new Noun(Intent.ThingDoor, "door", "steel door", "big door", "big steel door", "exit"));
             _nouns.Add(new Noun(Intent.ThingDoorKeyPad, "keypad", "key pad"));
+            _nouns.Add(new Noun(Intent.ThingDoorPostIt, "post-it note", "post-it", "note", "post it", "post it note"));
             _nouns.Add(new Noun(Intent.ThingLightSwitch, "lightswitch", "light switch", "switch"));
             _nouns.Add(new Noun(Intent.ThingFloor, "floor"));
             _nouns.Add(new Noun(Intent.ThingCrackInFloor, "crack in floor", "crack"));
@@ -146,7 +161,7 @@ namespace LD_37
                 return new Intent(Intent.ActionWTF);
 
             if (input.Length == 0)
-                return new Intent(matchedVerb.VerbKey);
+                return new Intent(matchedVerb.VerbKey, string.Empty, true);
 
             var matchedNouns = new Dictionary<string, Noun>();
             string actuallyMatchedNoun = string.Empty;
