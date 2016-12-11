@@ -34,6 +34,17 @@ namespace LD_37
             {
                 switch (intent.Action)
                 {
+                    case Intent.ActionInventory:
+                        if(currentState.Inventory.Count == 0)
+                        {
+                            return "Your inventory is empty. You have not picked up anything.";
+                        }
+                        string inventoryString = "Your inventory contains:\n";
+                        foreach(string item in currentState.Inventory)
+                        {
+                            inventoryString += "- " + item;
+                        }
+                        return inventoryString;
                     case Intent.ActionGoto:
                         if(intent.IsInvalidThing)
                         {

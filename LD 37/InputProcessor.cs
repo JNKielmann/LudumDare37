@@ -67,6 +67,9 @@ namespace LD_37
 
         static InputProcessor()
         {
+            _verbs.Add(new Verb(Intent.ActionInventory
+                , new string[] { "inventory", "look at inventory", "open inventory" }
+            ));
             _verbs.Add(new Verb(Intent.ActionLookAt
                     , new string[] { "look at" }
                     , Intent.ThingPicture, Intent.ThingFloor, Intent.ThingCrackInFloor
