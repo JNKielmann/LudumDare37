@@ -52,6 +52,13 @@ namespace LD_37
                             }
                     }
                     break;
+                case Intent.ActionPress:
+                    switch (intent.Thing)
+                    {
+                        case Intent.ThingLightSwitch:
+                            return HandlePressLightSwitch(currentState);
+                    }
+                    break;
                 case Intent.ActionUse:
                     switch (intent.Thing)
                     {
@@ -73,26 +80,31 @@ namespace LD_37
                                 }
                             }
                         case Intent.ThingLightSwitch:
-                            if (currentState.TutorialState.LightOn)
-                            {
-                                return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOn);
-                            }
-                            else
-                            {
-                                if (currentState.TutorialState.NextToLightSwitch)
-                                {
-                                    currentState.TutorialState.LightOn = true;
-                                    return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOff);
-                                }
-                                else
-                                {
-                                    return null;
-                                }
-                            }
+                            return HandlePressLightSwitch(currentState);
                     }
                     break;            
             }
             return null;
+        }
+
+        static string HandlePressLightSwitch(State currentState)
+        {
+            if (currentState.TutorialState.LightOn)
+            {
+                return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOn);
+            }
+            else
+            {
+                if (currentState.TutorialState.NextToLightSwitch)
+                {
+                    currentState.TutorialState.LightOn = true;
+                    return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOff);
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }

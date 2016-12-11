@@ -45,19 +45,19 @@ namespace LD_37
                     Keys.Tutorial_Introduction, 
 @"Hello fellow stranger!
 I have bad news for you.
-You are in a dark room. Maybe you could try to [look around]?"
+You are in a dark room and have no idea how go got here. Maybe you could try to [look around]?"
                 );
             _strings.Add(
                     Keys.Tutorial_LookAtRom,
-                    "You see a small {light} in the distance. Maybe you should [go to] that {light}."
+                    "You see a small {light} shimmering in the distance. Maybe you should [go to] that {light}."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_NextTo,
-                    "You are already here. The small amout of light seems to be coming from a {light switch}. Maby you should [use] it."
+                    "You are already here. The small amount of light seems to be coming from a {light switch}. Maby you should [use] it."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_IsFree,
-                    "As you slowly make your way through the darkness you realiste that the small light is a {light switch}."
+                    "As you slowly make your way through the darkness you realise that the small light is a {light switch}."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_IsEnchained,

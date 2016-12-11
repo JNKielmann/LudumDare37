@@ -135,6 +135,10 @@ namespace LD_37
                 , new string[] { "search", "search in", "examine" }
                 , Intent.ThingWardrobe, Intent.ThingClothes
             ));
+            _verbs.Add(new Verb(Intent.ActionPress
+                , new string[] { "press", "push" }
+                , Intent.ThingLightSwitch
+            ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));

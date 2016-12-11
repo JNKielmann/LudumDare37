@@ -23,6 +23,7 @@ namespace LD_37
         public const string ActionRead = "Read";
         public const string ActionSearch = "Search";
         public const string ActionInventory = "Inventory";
+        public const string ActionPress = "Press";
 
         public const string ThingInventory = "Inventory";
         public const string ThingLight = "Light";
