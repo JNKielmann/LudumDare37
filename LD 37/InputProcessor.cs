@@ -79,6 +79,7 @@ namespace LD_37
                     , Intent.ThingCrackInFloor
                     , Intent.ThingDoor
                     , Intent.ThingDoorKeyPad
+                    , Intent.ThingWardrobe
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -120,11 +121,16 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionOpen
                     , new string[] { "open" }
                     , Intent.ThingDoor
+                    , Intent.ThingWardrobe
                 ));
             _verbs.Add(new Verb(Intent.ActionRead
                     , new string[] { "read" }
                     , Intent.ThingDoorPostIt
                 ));
+            _verbs.Add(new Verb(Intent.ActionSearch
+                , new string[] { "search", "search in", "examine" }
+                , Intent.ThingWardrobe, Intent.ThingClothes
+            ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
@@ -141,6 +147,7 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingPaper, "paper"));
             _nouns.Add(new Noun(Intent.ThingChannel, "channel", "frequency", "station"));
             _nouns.Add(new Noun(Intent.ThingBattery, "battery"));
+            _nouns.Add(new Noun(Intent.ThingClothes, "clothes"));
 
         }
 

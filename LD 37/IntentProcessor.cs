@@ -25,6 +25,9 @@ namespace LD_37
                 case Location.Radio:
                     answer = RadioIntentProcessor.Process(intent, currentState);
                     break;
+                case Location.Wardrobe:
+                    answer = WardrobeIntentProcessor.Process(intent, currentState);
+                    break;
             }
             if (answer != null)
             {
@@ -35,27 +38,17 @@ namespace LD_37
                 switch (intent.Action)
                 {
                     case Intent.ActionInventory:
-                        if(currentState.Inventory.Count == 0)
+                        if (currentState.Inventory.Count == 0)
                         {
                             return "Your inventory is empty. You have not picked up anything.";
                         }
                         string inventoryString = "Your inventory contains:\n";
-                        foreach(string item in currentState.Inventory)
+                        foreach (string item in currentState.Inventory)
                         {
                             inventoryString += "- " + item;
                         }
                         return inventoryString;
                     case Intent.ActionGoto:
-                        if(intent.IsInvalidThing)
-                        {
-                            if(string.IsNullOrEmpty(intent.Thing))
-                            {
-                                return "Where do you want to [go]?";
-                            } else
-                            {
-                                return $"I don't know where {{{intent.Thing}}} is.";
-                            }
-                        }
                         if (currentState.TutorialState.LightOn)
                         {
                             switch (intent.Thing)
@@ -77,18 +70,40 @@ namespace LD_37
                                     return "You are now next to the Door.";
                             }
                         }
+                        if (string.IsNullOrEmpty(intent.Thing))
+                        {
+                            return "Where do you want to [go]?";
+                        }
+                        else
+                        {
+                            return $"I don't know where {{{intent.Thing}}} is.";
+                        }
+
                         break;
                     case Intent.ActionLookAt:
-                        if (intent.IsInvalidThing)
+                        if (currentState.TutorialState.LightOn)
                         {
-                            if (string.IsNullOrEmpty(intent.Thing))
+                            switch (intent.Thing)
                             {
-                                return "What do you want to [look at]?";
+                                case Intent.ThingBed:
+                                    return "It's an old {bed} with a {nightstand}. You should probably check it out.";
+                                case Intent.ThingWardrobe:
+                                    return "It's a big {wardrobe}. [Go to] it!";
+                                case Intent.ThingRadio:
+                                    return "You see the old {radio} across the room.";
+                                case Intent.ThingPicture:
+                                    return "There is a {picture} on the floor you should [check out]";
+                                case Intent.ThingDoor:
+                                    return "A massive steel {door}. Is this the way out?";
                             }
-                            else
-                            {
-                                return $"Right now you cann't see {{{intent.Thing}}}...";
-                            }
+                        }
+                        if (string.IsNullOrEmpty(intent.Thing))
+                        {
+                            return "What do you want to [look at]?";
+                        }
+                        else
+                        {
+                            return $"Right now you cann't see {{{intent.Thing}}}...";
                         }
                         switch (intent.Thing)
                         {
@@ -97,29 +112,23 @@ namespace LD_37
                         }
                         break;
                     case Intent.ActionTake:
-                        if (intent.IsInvalidThing)
+                        if (string.IsNullOrEmpty(intent.Thing))
                         {
-                            if (string.IsNullOrEmpty(intent.Thing))
-                            {
-                                return "What do you want to [take]?";
-                            }
-                            else
-                            {
-                                return $"There is no {{{intent.Thing}}} you could pick up.";
-                            }
+                            return "What do you want to [take]?";
+                        }
+                        else
+                        {
+                            return $"There is no {{{intent.Thing}}} you could pick up.";
                         }
                         break;
                     case Intent.ActionUse:
-                        if (intent.IsInvalidThing)
+                        if (string.IsNullOrEmpty(intent.Thing))
                         {
-                            if (string.IsNullOrEmpty(intent.Thing))
-                            {
-                                return "What do you want to [use]?";
-                            }
-                            else
-                            {
-                                return $"Right now you cann't use {{{intent.Thing}}}.";
-                            }
+                            return "What do you want to [use]?";
+                        }
+                        else
+                        {
+                            return $"Right now you cann't use {{{intent.Thing}}}.";
                         }
                         break;
                 }
