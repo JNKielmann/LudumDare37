@@ -82,6 +82,7 @@ namespace LD_37
                     , Intent.ThingBed
                     , Intent.ThingBedNightstand
                     , Intent.ThingBedDrawer
+                    , Intent.ThingBedFlyer
                     , Intent.ThingWardrobe
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
@@ -102,6 +103,8 @@ namespace LD_37
                     , Intent.ThingKey
                     , Intent.ThingPicture
                     , Intent.ThingPaper
+                    , Intent.ThingBedFlyer
+                    , Intent.ThingBattery
                 ));
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
@@ -130,17 +133,23 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionRead
                     , new string[] { "read" }
                     , Intent.ThingDoorPostIt
+                    , Intent.ThingBedFlyer
                 ));
             _verbs.Add(new Verb(Intent.ActionSearch
-                , new string[] { "search", "search in", "examine" }
-                , Intent.ThingWardrobe, Intent.ThingClothes
-            ));
+                    , new string[] { "search", "search in", "examine" }
+                    , Intent.ThingWardrobe, Intent.ThingClothes
+                ));
+            _verbs.Add(new Verb(Intent.ActionUnlock
+                    , new string[] { "unlock" }
+                    , Intent.ThingBedDrawer
+                ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
             _nouns.Add(new Noun(Intent.ThingBed, "bed"));
             _nouns.Add(new Noun(Intent.ThingBedNightstand, "nightstand", "night stand", "night table", "bedside table"));
             _nouns.Add(new Noun(Intent.ThingBedDrawer, "drawer", "third drawer"));
+            _nouns.Add(new Noun(Intent.ThingBedFlyer, "flyer"));
             _nouns.Add(new Noun(Intent.ThingWardrobe, "wardrobe"));
             _nouns.Add(new Noun(Intent.ThingRadio, "radio"));
             _nouns.Add(new Noun(Intent.ThingPicture, "picture"));

@@ -23,6 +23,7 @@ namespace LD_37
         public const string ActionRead = "Read";
         public const string ActionSearch = "Search";
         public const string ActionInventory = "Inventory";
+        public const string ActionUnlock = "Unlock";
 
         public const string ThingInventory = "Inventory";
         public const string ThingLight = "Light";
@@ -32,6 +33,7 @@ namespace LD_37
         public const string ThingBed = "Bed";
         public const string ThingBedNightstand = "Nightstand";
         public const string ThingBedDrawer = "Drawer";
+        public const string ThingBedFlyer = "Flyer";
         public const string ThingWardrobe = "Wardrobe";
         public const string ThingRadio = "Radio";
         public const string ThingPicture = "Picture";
