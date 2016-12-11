@@ -20,7 +20,7 @@ namespace LD_37
                     switch (intent.Thing)
                     {
                         case Intent.ThingPicture:
-                            return "The picture shows ....";
+                            return "The picture shows a happy family. The people on the picture seem familiar but you can't remember who they are.";
                         case Intent.ThingFloor:
                             if (!currentState.PictureState.PickedUpPicture)
                             {

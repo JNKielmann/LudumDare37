@@ -143,6 +143,10 @@ namespace LD_37
                     , new string[] { "unlock" }
                     , Intent.ThingBedDrawer
                 ));
+            _verbs.Add(new Verb(Intent.ActionPress
+                , new string[] { "press", "push" }
+                , Intent.ThingLightSwitch
+            ));
 
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));

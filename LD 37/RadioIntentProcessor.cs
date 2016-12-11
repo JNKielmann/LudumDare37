@@ -43,7 +43,7 @@ namespace LD_37
                                 return "You press the on button but nothing happens. Maybe the batteries died.";
                             }
                         case Intent.ThingBattery:
-                            if (!currentState.Inventory.Contains(Inventory.Battery))
+                            if (currentState.Inventory.Contains(Inventory.Battery))
                             {
                                 currentState.RadioState.HasPower = true;
                                 return "You put the battery into the radio";
