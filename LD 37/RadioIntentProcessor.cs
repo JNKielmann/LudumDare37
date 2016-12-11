@@ -20,7 +20,7 @@ namespace LD_37
                     switch (intent.Thing)
                     {
                         case Intent.ThingRadio:
-                            return "It is a old radio. Maybe it still works?";
+                            return "It is an old radio. Maybe it still works?";
                     }
                     break;
                 case Intent.ActionUse:
