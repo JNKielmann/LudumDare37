@@ -26,7 +26,8 @@ namespace LD_37
                             }
                             else
                             {
-                                return "It is a big closed {wardobe}. Do you dare to [open] it?";
+                                return @"It is a big closed {wardobe}.
+It might be nice to find out what's inside.";
                             }
                     }
                     break;
