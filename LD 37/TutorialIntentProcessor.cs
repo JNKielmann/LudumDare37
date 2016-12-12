@@ -10,6 +10,21 @@ namespace LD_37
     {
         static public string Process(Intent intent, State currentState)
         {
+            if (currentState.TutorialState.EyesAreClosed)
+            {
+                if ((intent.Action == Intent.ActionOpen || intent.Action == Intent.ActionUse)
+                    && intent.Thing == Intent.ThingEyes)
+                {
+                    currentState.TutorialState.EyesAreClosed = false;
+                    return @"""Damn it!"" you shout as you realize that it is still dark.
+However it's not pitch black so you are able to see the
+silhouettes of some objects.
+Maybe you should [look around] to check if you can spot
+something that might help.";
+                }
+                return "Before you do anything else, it would be a good idea to [open] your {eyes}.";
+            }
+
             switch (intent.Action)
             {
                 case Intent.ActionLookAtRoom:
@@ -94,7 +109,7 @@ namespace LD_37
                 if (currentState.TutorialState.NextToLightSwitch)
                 {
                     currentState.TutorialState.LightOn = true;
-                    return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOff);
+                    return Strings.Get(Strings.Keys.Tutorial_Use_LightSwitch_LightOff) + "\n" + Strings.Get(Strings.Keys.Room_Description);
                 }
                 else
                 {

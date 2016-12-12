@@ -10,6 +10,13 @@ namespace LD_37
     {
         public string Process(Intent intent, State currentState)
         {
+            if (intent.Action == Intent.ActionWTF)
+            {
+                string easterEgg = EasterEggIntentProcessor.Process(intent, currentState);
+                if (easterEgg != null)
+                    return easterEgg;
+            }
+
             string answer = null;
             switch (currentState.Location)
             {
@@ -31,134 +38,154 @@ namespace LD_37
                 case Location.Wardrobe:
                     answer = WardrobeIntentProcessor.Process(intent, currentState);
                     break;
+                case Location.Window:
+                    answer = WindowIntentProcessor.Process(intent, currentState);
+                    break;
+                case Location.Trapdoor:
+                    answer = TrapdoorIntentProcessor.Process(intent, currentState);
+                    break;
             }
             if (answer != null)
-            {
                 return answer;
-            }
-            else
-            {
-                switch (intent.Action) { 
-                    case Intent.ActionLookAtRoom:
-                        return "You are in a small room that seems to be part of a small shed. The big big {wardrobe} in the back of the room is casting a big shadow onto the floor. Next to that you see a {bed} with a little {nightstand}. On the ground there is a {picture}, but you can not see whats on it from the distance. There is also a {radio}, maybe it still works? The only way out seems to be a big steel {door}. What do you want to [check out] next?";
-                    case Intent.ActionInventory:
-                        if (currentState.Inventory.Count == 0)
-                        {
-                            return "Your inventory is empty. You have not picked up anything.";
-                        }
-                        string inventoryString = "Your inventory contains:\n";
-                        foreach (string item in currentState.Inventory)
-                        {
-                            inventoryString += "- " + item + "\n";
-                        }
-                        return inventoryString;
-                    case Intent.ActionGoto:
-                        if (currentState.TutorialState.LightOn)
-                        {
-                            switch (intent.Thing)
-                            {
-                                case Intent.ThingBedNightstand:
-                                case Intent.ThingBed:
-                                    if (currentState.Location == Location.Bed)
-                                    {
-                                        return "You are already next to the {bed}.";
-                                    }
-                                    else
-                                    {
-                                        currentState.Location = Location.Bed;
-                                        return "You decide to check out the {bed}. Next to it there is a {nighstand}";
-                                    }
-                                case Intent.ThingWardrobe:
-                                    if (currentState.Location == Location.Wardrobe)
-                                    {
-                                        return "You are already next to the {wardrobe}.";
-                                    }
-                                    else
-                                    {
-                                        currentState.Location = Location.Wardrobe;
-                                        return "You walk over to the {wardrobe}. It looks intimidating.";
-                                    }
-                                case Intent.ThingRadio:
-                                    if (currentState.Location == Location.Radio)
-                                    {
-                                        return "You are already next to the {radio}.";
-                                    }
-                                    else
-                                    {
-                                        currentState.Location = Location.Radio;
-                                        return "You approach the old {radio}. Some music would be nice.";
-                                    }
-                                case Intent.ThingPicture:
-                                    if (currentState.Location == Location.Picture)
-                                    {
-                                        return "You are already next to the {picture}.";
-                                    }
-                                    else
-                                    {
-                                        currentState.Location = Location.Picture;
-                                        return "You are now next to the {picture} on the floor.";
-                                    }
-                                case Intent.ThingDoor:
-                                    currentState.Location = Location.Door;
-                                    return "You turn around and are now in front of the steel {door}. Your only way out of here?";
-                            }
-                        }
-                        if (string.IsNullOrEmpty(intent.Thing))
-                        {
-                            return "Where do you want to [go]?";
-                        }
-                        else
-                        {
-                            return $"I don't know where {{{intent.Thing}}} is.";
-                        }
-                    case Intent.ActionLookAt:
-                        if (currentState.TutorialState.LightOn)
-                        {
-                            switch (intent.Thing)
-                            {
-                                case Intent.ThingBedNightstand:
-                                case Intent.ThingBed:
-                                    return "It's an old {bed} with a {nightstand}. You should probably check it out.";
-                                case Intent.ThingWardrobe:
-                                    return "It's a big {wardrobe}. [Go to] it!";
-                                case Intent.ThingRadio:
-                                    return "You see the old {radio} across the room.";
-                                case Intent.ThingPicture:
-                                    return "There is a {picture} on the floor you should [check out]";
-                                case Intent.ThingDoor:
-                                    return "A massive steel {door}. Is this the way out?";
-                                case Intent.ThingFloor:
-                                    return "There is nothing on the floor.";
-                            }
-                        }
-                        if (string.IsNullOrEmpty(intent.Thing))
-                        {
-                            return "What do you want to [look at]?";
-                        }
-                        else
-                        {
-                            return $"Right now you can't see {{{intent.Thing}}}...";
-                        }
-                    case Intent.ActionTake:
-                        if (string.IsNullOrEmpty(intent.Thing))
-                        {
-                            return "What do you want to [take]?";
-                        }
-                        else
-                        {
-                            return $"There is no {{{intent.Thing}}} you could pick up.";
-                        }
-                    case Intent.ActionUse:
-                        if (string.IsNullOrEmpty(intent.Thing))
-                        {
-                            return "What do you want to [use]?";
-                        }
-                        else
-                        {
-                            return $"Right now you can't use {{{intent.Thing}}}.";
-                        }
-                }
 
+            switch (intent.Action)
+            {
+                case Intent.ActionLookAtRoom:
+                    return "You are in a small room that seems to be part of a shed.\n" + Strings.Get(Strings.Keys.Room_Description);
+                case Intent.ActionInventory:
+                    if (currentState.Inventory.Count == 0)
+                    {
+                        return "Your inventory is empty. You have not picked up anything.";
+                    }
+                    string inventoryString = "Your inventory contains:\n";
+                    foreach (string item in currentState.Inventory)
+                    {
+                        inventoryString += "- " + item + "\n";
+                    }
+                    return inventoryString;
+                case Intent.ActionGoto:
+                    if (currentState.TutorialState.LightOn)
+                    {
+                        switch (intent.Thing)
+                        {
+                            case Intent.ThingBedNightstand:
+                            case Intent.ThingBed:
+                                if (currentState.Location == Location.Bed)
+                                {
+                                    return "You are already next to the {bed}.";
+                                }
+                                else
+                                {
+                                    currentState.Location = Location.Bed;
+                                    return "You decide to check out the {bed}. Next to it there is a {nighstand}";
+                                }
+                            case Intent.ThingWardrobe:
+                                if (currentState.Location == Location.Wardrobe)
+                                {
+                                    return "You are already next to the {wardrobe}.";
+                                }
+                                else
+                                {
+                                    currentState.Location = Location.Wardrobe;
+                                    return "You walk over to the {wardrobe}. It looks intimidating.";
+                                }
+                            case Intent.ThingRadio:
+                                if (currentState.Location == Location.Radio)
+                                {
+                                    return "You are already next to the {radio}.";
+                                }
+                                else
+                                {
+                                    currentState.Location = Location.Radio;
+                                    return "You approach the old {radio}. Some music would be nice.";
+                                }
+                            case Intent.ThingPicture:
+                                if (currentState.Location == Location.Picture)
+                                {
+                                    return "You are already next to the {picture}.";
+                                }
+                                else
+                                {
+                                    currentState.Location = Location.Picture;
+                                    return "You are now next to the {picture} on the floor.";
+                                }
+                            case Intent.ThingDoor:
+                                if (currentState.Location == Location.Door)
+                                {
+                                    return "You are already in front of to the {door}.";
+                                }
+                                currentState.Location = Location.Door;
+                                return "You turn around and are now in front of the steel {door}. Your only way out of here?";
+                            case Intent.ThingWindow:
+                                if (currentState.Location == Location.Window)
+                                {
+                                    return "You are already in front of the {window}.";
+                                }
+                                currentState.Location = Location.Window;
+                                return "You walk towards the {window} to see what you can do from there.";
+                            case Intent.ThingTrapdoor:
+                                if (currentState.Location == Location.Trapdoor)
+                                {
+                                    return "You are already in front of the {trapdoor}.";
+                                }
+                                currentState.Location = Location.Trapdoor;
+                                return "You are now in front of the {trapdoor}.";
+                        }
+                    }
+                    if (string.IsNullOrEmpty(intent.Thing))
+                    {
+                        return "Where do you want to [go]?";
+                    }
+                    else
+                    {
+                        return $"I don't know where {{{intent.Thing}}} is.";
+                    }
+                case Intent.ActionLookAt:
+                    if (currentState.TutorialState.LightOn)
+                    {
+                        switch (intent.Thing)
+                        {
+                            case Intent.ThingBedNightstand:
+                            case Intent.ThingBed:
+                                return "It's an old {bed} with a {nightstand}. You should probably check it out.";
+                            case Intent.ThingWardrobe:
+                                return "It's a big {wardrobe}. [Go to] it!";
+                            case Intent.ThingRadio:
+                                return "You see the old {radio} across the room.";
+                            case Intent.ThingPicture:
+                                return "There is a {picture} on the floor you should [check out]";
+                            case Intent.ThingDoor:
+                                return "A massive steel {door}. Is this the way out?";
+                            case Intent.ThingFloor:
+                                return "There is nothing on the floor.";
+                        }
+                    }
+                    if (string.IsNullOrEmpty(intent.Thing))
+                    {
+                        return "What do you want to [look at]?";
+                    }
+                    else
+                    {
+                        return $"Right now you can't see {{{intent.Thing}}}...";
+                    }
+                case Intent.ActionTake:
+                    if (string.IsNullOrEmpty(intent.Thing))
+                    {
+                        return "What do you want to [take]?";
+                    }
+                    else
+                    {
+                        return $"There is no {{{intent.Thing}}} you could pick up.";
+                    }
+                case Intent.ActionUse:
+                    if (string.IsNullOrEmpty(intent.Thing))
+                    {
+                        return "What do you want to [use]?";
+                    }
+                    else
+                    {
+                        return $"Right now you can't use {{{intent.Thing}}}.";
+                    }
             }
 
             return Strings.Get(Strings.Keys.Unknown_Intent);

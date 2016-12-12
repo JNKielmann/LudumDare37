@@ -26,6 +26,7 @@ namespace LD_37
         public const string ActionUnlock = "Unlock";
         public const string ActionPress = "Press";
 
+        public const string ThingEyes = "Eyes";
         public const string ThingInventory = "Inventory";
         public const string ThingLight = "Light";
         public const string ThingKey = "Key";
@@ -50,6 +51,9 @@ namespace LD_37
         public const string ThingBattery = "Battery";
 
         public const string ThingClothes = "Clothes";
+
+        public const string ThingWindow = "Window";
+        public const string ThingTrapdoor = "Trapdoor";
 
 
 

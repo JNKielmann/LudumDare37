@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BedIntentProcessor.cs" />
     <Compile Include="DoorIntentProcessor.cs" />
+    <Compile Include="EasterEggIntentProcessor.cs" />
     <Compile Include="InputProcessor.cs" />
     <Compile Include="Intent.cs" />
     <Compile Include="IntentProcessor.cs" />
@@ -55,8 +56,10 @@
     <Compile Include="RadioIntentProcessor.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Strings.cs" />
+    <Compile Include="TrapdoorIntentProcessor.cs" />
     <Compile Include="TutorialIntentProcessor.cs" />
     <Compile Include="WardrobeIntentProcessor.cs" />
+    <Compile Include="WindowIntentProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

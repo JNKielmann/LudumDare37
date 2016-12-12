@@ -20,7 +20,9 @@ namespace LD_37
                     switch (intent.Thing)
                     {
                         case Intent.ThingPicture:
-                            return "The picture shows a happy family. The people on the picture seem familiar but you can't remember who they are.";
+                            return @"The picture shows a happy family. 
+The people on the picture seem familiar but you can't remember who they are.
+You can see that the picture is not embattled in any way.";
                         case Intent.ThingFloor:
                             if (!currentState.PictureState.PickedUpPicture)
                             {
@@ -37,7 +39,10 @@ namespace LD_37
                             }
                             else
                             {
-                                return "You see a small {piece of paper}";
+                                currentState.Inventory.Add(Inventory.PieceOfPaperBlue);
+                                return @"You see a small {piece of paper}.
+It has a 4 written on it with blue ink.
+You picked it up in case you want to [look at] it in your {inventory} later.";
                             }
                     }
                     break;

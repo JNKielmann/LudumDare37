@@ -46,10 +46,15 @@ Because obviously the key you found earlier doesn't fit here...";
                             else if (currentState.BedState.DrawerIsClosed)
                                 return @"You see a closed drawer. If you want to know what's inside you should [open] it first.";
                             else
+                            {
+                                currentState.Inventory.Add(Inventory.Battery);
+                                currentState.Inventory.Add(Inventory.PieceOfPaperYellow);
                                 return @"Now that the {drawer} is open, you see that there is a lot of rubbish.
 Some rubberbands, a bunch of pins and stuff like that.
-But in between those things you see a " + Inventory.Battery + " and a " + Inventory.PieceOfPaperYellow + @".
-You think that these two might come in handy.";
+But in between those things you see a " + Inventory.Battery + @" 
+and a " + Inventory.PieceOfPaperYellow + @".
+You think that these two might come in handy so you put them in your [inventory].";
+                            }
 
                         case Intent.ThingBedFlyer:
                             return _ReadFlyer(currentState);
@@ -74,10 +79,13 @@ You think that these two might come in handy.";
                         if (!currentState.BedState.DrawerIsLocked)
                         {
                             currentState.BedState.DrawerIsClosed = false;
+                            currentState.Inventory.Add(Inventory.Battery);
+                            currentState.Inventory.Add(Inventory.PieceOfPaperYellow);
                             return @"You opened the {drawer} and see..... mostly rubbish.
 Some rubberbands, a bunch of pins and stuff like that.
-But in between those things you see a " + Inventory.Battery + " and a " + Inventory.PieceOfPaperYellow + @".
-You think that these two might come in handy.";
+But in between those things you see a " + Inventory.Battery + @"
+and a " + Inventory.PieceOfPaperYellow + @".
+You think that these two might come in handy so you put them in your [inventory].";
                         }
                         else
                             return "The drawer is still locked so you can't open it.";
@@ -123,7 +131,8 @@ You think that these two might come in handy.";
                 currentState.Inventory.Remove(Inventory.UnknownKey);
                 currentState.Inventory.Add(Inventory.NightstandKey);
                 currentState.BedState.DrawerIsLocked = false;
-                return "It seems like the {key} you found in the {wardrobe} fits the {drawer} and now you succesfully unlocked it.";
+                return @"It seems like the {key} you found in the {wardrobe} fits the {drawer} 
+and now you succesfully unlocked it.";
             }
             return "You can't unlock the {drawer} if you don't have the correct {key}.";
         }

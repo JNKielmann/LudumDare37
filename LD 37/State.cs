@@ -14,10 +14,12 @@ namespace LD_37
         Radio,
         Picture,
         Door,
-        Window
+        Window,
+        Trapdoor
     }
     public class TutorialState
     {
+        public bool EyesAreClosed { get; set; } = true;
         public bool IsFree { get; set; } = false;
         public bool NextToLightSwitch { get; set; } = false;
         public bool LightOn { get; set; } = false;
@@ -34,7 +36,9 @@ namespace LD_37
     public class DoorState
     {
         public const int Password = 4391; // Blue = 4, Red = 3, Yellow = 9, Green = 1
+        public const int MaxPasswordAttemptsUntilbruteforceDetection = 15;
 
+        public int PasswordAttempts { get; set; } = 0;
         public bool DoorIsUnlocked { get; set; } = false;
         public bool FinalDecicsion_ReadPostIt { get; set; } = false;
         public bool FinalDecicsion_PressCtrlC { get; set; } = false;
@@ -48,6 +52,10 @@ namespace LD_37
     {
         public bool IsOpen { get; set; } = false;
     }
+    public class EasterEggState
+    {
+        public int InsultCount { get; set; } = 0;
+    }
     public class State
     {
         public Location Location { get; set; } = Location.Tutorial;
@@ -58,6 +66,7 @@ namespace LD_37
         public DoorState DoorState { get; set; } = new DoorState();
         public BedState BedState { get; set; } = new BedState();
         public WardrobeState WardrobeState { get; set; } = new WardrobeState();
+        public EasterEggState EasterEggState { get; set; } = new EasterEggState();
         public List<string> Inventory { get; } = new List<string>();
     }
 }

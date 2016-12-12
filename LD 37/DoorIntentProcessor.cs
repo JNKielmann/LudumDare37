@@ -34,6 +34,10 @@ Well this is awkward...";
                     return _ProcessLookAt(intent, currentState);
                 case Intent.ActionUse:
                     return _ProcessUse(intent, currentState);
+                case Intent.ActionUnlock:
+                    if (intent.Thing == Intent.ThingDoor || intent.Thing == Intent.ThingDoorKeyPad)
+                        return _ProcessUseKeypad(intent, currentState);
+                    break;
                 case Intent.ActionEnter:
                     if (intent.Thing == Intent.ThingDoor)
                         return _ProcessUseDoor(intent, currentState);
@@ -57,7 +61,8 @@ Well this is awkward...";
                     return Strings.Get(Strings.Keys.DoorIntent_LookAt_Door);
                 case Intent.ThingDoorKeyPad:
                     if (currentState.DoorState.DoorIsUnlocked)
-                        return "After pressing the right buttons on the keypad you can read the word \"correct\" on the display";
+                        return @"After pressing the right buttons on the keypad you
+can read the word ""correct"" on the display";
                     return Strings.Get(Strings.Keys.DoorIntent_LookAt_DoorKeyPad);
                 default:
                     return null;
@@ -88,15 +93,39 @@ Well this is awkward...";
             }
             else
                 pass = intent.Parameter;
+
+            if (pass == "42")
+                return @"Oh I see what you did there.
+And now you think I would let that slip through, right?
+
+I mean, don't get me wrong here, I am really thinking about it...
+but I feel like that would make the game too easy.
+
+I honestly appreciate the effort thoug!";
+
             if (pass.Length < 4 || pass.Length > 4)
                 return "I said a <FOUR DIGIT> password...";
             int digit;
             if (!int.TryParse(pass, out digit))
                 return "One question: Do you know what <NUMBERS> are?";
             if (digit != DoorState.Password)
-                return "You pressed the small buttons on the keypad. But unfortunately you only hear a buzzing sound which probably means that the password was wrong.";
+            {
+                if (currentState.DoorState.PasswordAttempts == DoorState.MaxPasswordAttemptsUntilbruteforceDetection)
+                {
+                    ++currentState.DoorState.PasswordAttempts;
+                    return $"Let me think about it...you tried {DoorState.MaxPasswordAttemptsUntilbruteforceDetection} times to enter the password.\nYou must be really desperate to brute-force your way through a <Ludum Dare Game>!";
+                }
+                else if (currentState.DoorState.PasswordAttempts > DoorState.MaxPasswordAttemptsUntilbruteforceDetection)
+                    return "Just play the damn game!";
+                ++currentState.DoorState.PasswordAttempts;
+                return @"You pressed the small buttons on the keypad. 
+But unfortunately you only hear a buzzing sound which probably means 
+that the password was wrong.";
+            }
             currentState.DoorState.DoorIsUnlocked = true;
-            return "As you pressed the small buttons on the keypad you can hear a faint 'click' sound.\nDid it work? Did you really enter the correct password?\nThere's only one way to find out!";
+            return @"As you pressed the small buttons on the keypad you can hear a faint 'click' sound.
+Did it work? Did you really enter the correct password?
+There's only one way to find out!";
         }
 
         private static string _ProcessUseDoor(Intent intent, State currentState)
@@ -111,7 +140,7 @@ The same old brick wall as the rest of this lame room.
 But wait...do you see what I see? Yes - there is a little {post-it note} on the wall.
 Maybe you should [read] it?";
             }
-            return "\"You huff and you puff and you blow the house .. oh I mean door .. away\", but it doesn't move.\nMaybe you are not as strong as ou think you are?";
+            return "\"You huff and you puff and you blow the house away .. oh I mean you blow the door away\", but it doesn't move.\nMaybe you are not as strong as ou think you are?";
         }
     }
 }

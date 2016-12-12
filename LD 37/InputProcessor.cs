@@ -24,7 +24,7 @@ namespace LD_37
                 actuallyMatchedNoun = string.Empty;
                 foreach (var noun in Nouns.OrderByDescending(n => n.Length))
                 {
-                    if ((input + " ").StartsWith(noun + " "))
+                    if ((input + " ").StartsWith(noun + " ") || (input + " ").StartsWith("the " + noun + " "))
                     {
                         actuallyMatchedNoun = noun;
                         return true;
@@ -84,6 +84,8 @@ namespace LD_37
                     , Intent.ThingBedDrawer
                     , Intent.ThingBedFlyer
                     , Intent.ThingWardrobe
+                    , Intent.ThingWindow
+                    , Intent.ThingTrapdoor
                 ));
             _verbs.Add(new Verb(Intent.ActionLookAtRoom
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
@@ -96,6 +98,8 @@ namespace LD_37
                     , Intent.ThingRadio
                     , Intent.ThingPicture
                     , Intent.ThingDoor
+                    , Intent.ThingWindow
+                    , Intent.ThingTrapdoor
                 ));
 
             _verbs.Add(new Verb(Intent.ActionTake
@@ -108,8 +112,10 @@ namespace LD_37
                 ));
             _verbs.Add(new Verb(Intent.ActionUse
                     , new string[] { "use" }
-                    , Intent.ThingKey, Intent.ThingLightSwitch
-                    , Intent.ThingRadio, Intent.ThingBattery
+                    , Intent.ThingEyes
+                    , Intent.ThingKey
+                    , Intent.ThingRadio
+                    , Intent.ThingBattery
                     , Intent.ThingKey
                     , Intent.ThingLightSwitch
                     , Intent.ThingDoor
@@ -126,9 +132,12 @@ namespace LD_37
                 ));
             _verbs.Add(new Verb(Intent.ActionOpen
                     , new string[] { "open" }
+                    , Intent.ThingEyes
                     , Intent.ThingDoor
                     , Intent.ThingBedDrawer
                     , Intent.ThingWardrobe
+                    , Intent.ThingWindow
+                    , Intent.ThingTrapdoor
                 ));
             _verbs.Add(new Verb(Intent.ActionRead
                     , new string[] { "read" }
@@ -142,12 +151,16 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionUnlock
                     , new string[] { "unlock" }
                     , Intent.ThingBedDrawer
+                    , Intent.ThingDoor
+                    , Intent.ThingDoorKeyPad
+                    , Intent.ThingTrapdoor
                 ));
             _verbs.Add(new Verb(Intent.ActionPress
                 , new string[] { "press", "push" }
                 , Intent.ThingLightSwitch
             ));
 
+            _nouns.Add(new Noun(Intent.ThingEyes, "eyes", "your eyes", "my eyes"));
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));
             _nouns.Add(new Noun(Intent.ThingKey, "key"));
             _nouns.Add(new Noun(Intent.ThingBed, "bed"));
@@ -167,7 +180,8 @@ namespace LD_37
             _nouns.Add(new Noun(Intent.ThingChannel, "channel", "frequency", "station"));
             _nouns.Add(new Noun(Intent.ThingBattery, "battery"));
             _nouns.Add(new Noun(Intent.ThingClothes, "clothes"));
-
+            _nouns.Add(new Noun(Intent.ThingWindow, "window", "barricaded window"));
+            _nouns.Add(new Noun(Intent.ThingTrapdoor, "trapdoor"));
         }
 
 
@@ -197,7 +211,7 @@ namespace LD_37
                 }
             }
             if (matchedVerb == null)
-                return new Intent(Intent.ActionWTF);
+                return new Intent(Intent.ActionWTF, string.Empty, true, input);
 
             if (input.Length == 0)
                 return new Intent(matchedVerb.VerbKey, string.Empty, true);
