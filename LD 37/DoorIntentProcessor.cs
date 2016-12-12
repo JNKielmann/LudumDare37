@@ -132,6 +132,7 @@ There's only one way to find out!";
         {
             if (currentState.DoorState.DoorIsUnlocked)
             {
+                Program.StartMusicOpenDoor();
                 currentState.DoorState.FinalDecicsion_ReadPostIt = true;
                 return @"Because the smart you was able to enter the correct password, the door is now unlocked.
 But after opening it you only see a wall.

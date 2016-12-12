@@ -14,9 +14,25 @@ namespace LD_37
 {
     class Program
     {
+        static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+        public static void StartMusicWakeUp()
+        {
+            wplayer.settings.volume = 55;
+            wplayer.URL = "etr - wake up.mp3";
+            wplayer.controls.play();
+        }
+        public static void StartMusicOpenDoor()
+        {
+            wplayer.settings.volume = 90;
+            wplayer.URL = "etr - brick wall.mp3";
+            wplayer.controls.play();
+        }
+
         static void Main(string[] args)
         {
             Console.Title = "Ludum Dare 37 - The Room";
+
+            StartMusicWakeUp();            
 
             var state = new State();
             var inputProcessor = new InputProcessor();
