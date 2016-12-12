@@ -23,6 +23,13 @@ namespace LD_37
                             return "It is an old radio. Maybe it still works?";
                     }
                     break;
+                case Intent.ActionInsert:
+                    switch (intent.Thing)
+                    {
+                        case Intent.ThingBattery:
+                            return HandleUseBattery(currentState);
+                    }
+                    break;
                 case Intent.ActionUse:
                     switch (intent.Thing)
                     {
@@ -40,18 +47,10 @@ namespace LD_37
                             }
                             else
                             {
-                                return "You press the on button but nothing happens. Maybe the batteries died.";
+                                return "You press the on button but nothing happens. You notice that the battery is missing.";
                             }
                         case Intent.ThingBattery:
-                            if (currentState.Inventory.Contains(Inventory.Battery))
-                            {
-                                currentState.RadioState.HasPower = true;
-                                return "You put the battery into the radio";
-                            }
-                            else
-                            {
-                                return "You don't have a new battery";
-                            }
+                            return HandleUseBattery(currentState);
 
                     }
                     break;
@@ -96,6 +95,19 @@ namespace LD_37
                     break;
             }
             return null;
+        }
+
+        private static string HandleUseBattery(State currentState)
+        {
+            if (currentState.Inventory.Contains(Inventory.Battery))
+            {
+                currentState.RadioState.HasPower = true;
+                return "You put the battery into the radio";
+            }
+            else
+            {
+                return "You don't have a new battery";
+            }
         }
     }
 }

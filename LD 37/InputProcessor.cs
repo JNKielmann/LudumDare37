@@ -162,6 +162,10 @@ namespace LD_37
                 , new string[] { "press", "push", "flip" }
                 , Intent.ThingLightSwitch
             ));
+            _verbs.Add(new Verb(Intent.ActionInsert
+                , new string[] { "insert", "put", "put in" }
+                , Intent.ThingBattery
+            ));
 
             _nouns.Add(new Noun(Intent.ThingEyes, "eyes", "your eyes", "my eyes"));
             _nouns.Add(new Noun(Intent.ThingLight, "light", "lightsource", "small light"));

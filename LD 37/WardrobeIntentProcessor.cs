@@ -10,10 +10,6 @@ namespace LD_37
     {
         static public string Process(Intent intent, State currentState)
         {
-            if (intent.IsInvalidThing)
-            {
-                return null;
-            }
             switch (intent.Action)
             {
                 case Intent.ActionLookAt:
@@ -50,27 +46,24 @@ Maybe you can [search] for something useful.";
                     }
                     break;
                 case Intent.ActionSearch:
-                    switch (intent.Thing)
+                    if (intent.Thing == Intent.ThingWardrobe || intent.Thing == Intent.ThingClothes || intent.Thing == "")
                     {
-                        case Intent.ThingWardrobe:
-                        case Intent.ThingClothes:
-                            if (currentState.WardrobeState.IsOpen)
+                        if (currentState.WardrobeState.IsOpen)
+                        {
+                            if (currentState.Inventory.Contains(Inventory.PieceOfPaperGreen))
                             {
-                                if (currentState.Inventory.Contains(Inventory.PieceOfPaperGreen))
-                                {
-                                    return "You examin the clothes again but find nothing useful.";
-                                }
-                                else
-                                {
-                                    currentState.Inventory.Add(Inventory.PieceOfPaperGreen);
-                                    currentState.Inventory.Add(Inventory.UnknownKey);
-                                    return @"You found a {piece of paper} with a 1 written on it in green ink. 
+                                return "You examin the clothes again but find nothing useful.";
+                            }
+                            else
+                            {
+                                currentState.Inventory.Add(Inventory.PieceOfPaperGreen);
+                                currentState.Inventory.Add(Inventory.UnknownKey);
+                                return @"You found a {piece of paper} with a 1 written on it in green ink. 
 Moreover you found a {key}. 
 You put them both into your {inventory}. 
 That was easier than expected...";
-                                }
                             }
-                            break;
+                        }
                     }
                     break;
             }

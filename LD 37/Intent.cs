@@ -25,6 +25,7 @@ namespace LD_37
         public const string ActionInventory = "Inventory";
         public const string ActionUnlock = "Unlock";
         public const string ActionPress = "Press";
+        public const string ActionInsert = "Insert";
 
         public const string ThingEyes = "Eyes";
         public const string ThingInventory = "Inventory";

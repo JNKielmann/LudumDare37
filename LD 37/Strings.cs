@@ -135,7 +135,7 @@ live in this shack.
 On the ground you see a {picture}, but from the distance you can 
 not clearly see what it shows. 
 There is also a {radio} standing on a table, maybe it still works?
-But the last thing you see really gives goosebumps.³.³.³
+But the last thing you see really gives you goosebumps.³.³.³
 In one corner of the room is a surveillance camera.
 ""Who...is...watching...me?""
 
