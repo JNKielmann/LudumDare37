@@ -38,9 +38,6 @@ namespace LD_37
             var inputProcessor = new InputProcessor();
             var intentProcessor = new IntentProcessor();
 
-            state.TutorialState.LightOn = true;
-            state.Location = Location.Door;
-
             WriteInColor(Strings.Get(Strings.Keys.Tutorial_Introduction));
             while(true)
             {

@@ -91,7 +91,7 @@ namespace LD_37
                     , new string[] { "look", "look around", "lookaround", "look at room", "lookatroom" }
                 ));
             _verbs.Add(new Verb(Intent.ActionGoto
-                    , new string[] { "go", "go to", "goto", "checkout", "check out" }
+                    , new string[] { "go", "go to", "goto" }
                     , Intent.ThingLight
                     , Intent.ThingBed
                     , Intent.ThingWardrobe
@@ -147,6 +147,9 @@ namespace LD_37
             _verbs.Add(new Verb(Intent.ActionSearch
                     , new string[] { "search", "search in", "examine" }
                     , Intent.ThingWardrobe, Intent.ThingClothes
+                    , Intent.ThingBed
+                    , Intent.ThingBedNightstand
+                    , Intent.ThingBedDrawer
                 ));
             _verbs.Add(new Verb(Intent.ActionUnlock
                     , new string[] { "unlock" }
@@ -156,7 +159,7 @@ namespace LD_37
                     , Intent.ThingTrapdoor
                 ));
             _verbs.Add(new Verb(Intent.ActionPress
-                , new string[] { "press", "push" }
+                , new string[] { "press", "push", "flip" }
                 , Intent.ThingLightSwitch
             ));
             _verbs.Add(new Verb(Intent.ActionInsert
