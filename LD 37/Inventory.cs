@@ -16,6 +16,5 @@ namespace LD_37
         public const string NightstandKey = "A {key} for the third drawer of the {nightstand}";
         public const string Battery = "{Battery}";
         public const string Flyer = "A {flyer} for a radio station. It reads: \"Hey folks, check out RadioParadise on 84. We play the best music in the world.\"";
-
     }
 }

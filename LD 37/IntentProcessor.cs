@@ -77,7 +77,9 @@ namespace LD_37
                                 else
                                 {
                                     currentState.Location = Location.Bed;
-                                    return "You decide to check out the {bed}. Next to it there is a {nighstand}";
+                                    return @"You decide to check out the {bed}. 
+Next to it there is a {nighstand}.
+You also see a little {flyer} lying under the pillow.";
                                 }
                             case Intent.ThingWardrobe:
                                 if (currentState.Location == Location.Wardrobe)
@@ -87,7 +89,9 @@ namespace LD_37
                                 else
                                 {
                                     currentState.Location = Location.Wardrobe;
-                                    return "You walk over to the {wardrobe}. It looks intimidating.";
+                                    return @"You walk over to the {wardrobe}. 
+It looks intimidating.
+Do you dare to [open] it?";
                                 }
                             case Intent.ThingRadio:
                                 if (currentState.Location == Location.Radio)
@@ -115,7 +119,12 @@ namespace LD_37
                                     return "You are already in front of to the {door}.";
                                 }
                                 currentState.Location = Location.Door;
-                                return "You turn around and are now in front of the steel {door}. Your only way out of here?";
+                                return @"You turn around and are now in front of the steel {door}. 
+Your only way out of here?
+Of course the door is locked.
+It seems like there is a {keypad} on the {door} to unlock it.
+If the keypad works correctly, it could be possible to enter
+some kind of code to open the door.";
                             case Intent.ThingWindow:
                                 if (currentState.Location == Location.Window)
                                 {
@@ -147,13 +156,13 @@ namespace LD_37
                         {
                             case Intent.ThingBedNightstand:
                             case Intent.ThingBed:
-                                return "It's an old {bed} with a {nightstand}. You should probably check it out.";
+                                return "It's an old {bed} with a {nightstand}. You should probably [go to] the {bed}.";
                             case Intent.ThingWardrobe:
                                 return "It's a big {wardrobe}. [Go to] it!";
                             case Intent.ThingRadio:
                                 return "You see the old {radio} across the room.";
                             case Intent.ThingPicture:
-                                return "There is a {picture} on the floor you should [check out]";
+                                return "There is a {picture} on the floor you should [go to]";
                             case Intent.ThingDoor:
                                 return "A massive steel {door}. Is this the way out?";
                             case Intent.ThingFloor:

@@ -58,18 +58,12 @@ What do they want from you?
 So many qestions are going through your mind...
 Now that you figured out that you are not dead you notice your eyes are closed.
 You think the first thing you should do is [open] your {eyes}."
-                //@"Hello fellow stranger!
-                //I have bad news for you.
-                //You are in a dark room and have no idea how you got here. 
-                //Maybe you could try to [look around]?"
                 );
             _strings.Add(
                     Keys.Tutorial_LookAtRom,
                     @"As you scan the dark environment your {eyes} catch a small {light} in the distance.
 Because you realize that this might be your only clue, you want to [go to] 
 the {light} to find out where it's coming from."
-                //                    @"You see a small {light} shimmering in the distance.
-                //Maybe you should [go to] that {light}."
                 );
             _strings.Add(
                     Keys.Tutorial_Goto_Light_NextTo,
@@ -120,7 +114,7 @@ you realise that this doesn't make much sense."
                     Keys.Tutorial_Use_LightSwitch_LightOff,
                    @"Full of hope that the {switch} is working, you raise your hand to flip it.
 .³.³.³
-""Bright, dark, bright, dark, ..."" you think as the light flickers until it stays on.
+""Bright², dark², bright², dark², ..."" you think as the light flickers until it stays on.
 ""Perfect!"".
 After a few seconds your eyes adjusted themselves to the brightness.
 Now that the room is filled with light, the silhouettes are revealed 
@@ -128,38 +122,41 @@ and you see the objects in the room."
                 );
 
             _strings.Add(Keys.Room_Description,
-                @"The walls of your ""prison"" are made of a very old brick.
+                @"The first thing you notice is a big steel {door}.
+The walls of your ""prison"" are made of very old bricks.
 They look like they could collapse at any moment.
-Maybe you find something to destroy them?
 One of the walls has a [window] on it, but the [window] is barricaded.
-Right in front of you you notice there is a big {wardrobe} 
+Right in front of you you notice there is a {wardrobe} 
 that casts a big shadow on the floor.
 As your eyes follow the shadow you see that it ends on a {trapddor}.
-Next to that you see a {bed} with a little {nightstand} on its side.
+Next to that you see a {bed}.
 Why is there furniture in here? Just like as if somebody would
 live in this shack.
 On the ground you see a {picture}, but from the distance you can 
 not clearly see what it shows. 
 There is also a {radio} standing on a table, maybe it still works?
-As you look behind you, you see a big steel {door}.
-Of course the door is locked.
-It seems like there is a {keypad} on the {door} to unlock it.
-If the keypad works correctly, it could be possible to enter
-some kind of code to open the door.
+But the last thing you see really gives goosebumps.³.³.³
+In one corner of the room is a surveillance camera.
+""Who...is...watching...me?""
 
-What do you want to [check out]?"
+You wonder where you [go to] next?"
                 );
 
 
             _strings.Add(
                     Keys.DoorIntent_LookAt_Door,
-                    @"You are standing in front of a massive steel {door} and ask yourself ""Why the hell are you here?"".
-You can see that you need to enter a four digit password into a {keypad} to open the door. The digits seem to be colored. What does that mean?
+                    @"You are standing in front of a massive steel {door} and
+ask yourself ""Why the hell are you here?"".
+You can see that you need to enter a four digit password into a {keypad} to open the door. 
+The digits seem to be colored. What does that mean?
+If you [look at] the keypad 
 Maybe you can find some hints in this room?"
                 );
             _strings.Add(
                     Keys.DoorIntent_LookAt_DoorKeyPad,
-                    @"You look at a {keypad} that accepts four digits. The first digit is blue, the second red, the third yellow and the last one is green. 
+                    @"You look at a {keypad} that accepts four digits. 
+The first digit is blue, the second red, the third yellow and
+the last one is green. 
 Quite interesting isn't it?"
                 );
 
