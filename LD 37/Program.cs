@@ -17,20 +17,20 @@ namespace LD_37
         static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
         public static void StartMusicWakeUp()
         {
-            wplayer.settings.volume = 55;
+            wplayer.settings.volume = 35;
             wplayer.URL = "etr - wake up.mp3";
             wplayer.controls.play();
         }
         public static void StartMusicOpenDoor()
         {
-            wplayer.settings.volume = 90;
+            wplayer.settings.volume = 60;
             wplayer.URL = "etr - brick wall.mp3";
             wplayer.controls.play();
         }
 
         static void Main(string[] args)
         {
-            Console.Title = "Ludum Dare 37 - The Room";
+            Console.Title = "Ludum Dare 37 - The Shack";
 
             StartMusicWakeUp();            
 
